@@ -207,6 +207,9 @@ export default {
     onekeyStart: '演练',
     AddTags: '添加标签'
   },
+  human: {
+    signInTitle: '请填写您的资料'
+  },
   navbar: {
     logOut: '退出登录',
     dashboard: '首页',

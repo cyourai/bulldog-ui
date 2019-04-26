@@ -76,6 +76,11 @@ export const constantRouterMap = [{
     component: _import('onekey/onekeyStart'),
     hidden: true
   },
+  {
+    path: '/human',
+    component: _import('human/signin'),
+    hidden: true
+  },
   // {
   //   path: '/process/taskId/:taskId',
   //   component: _import('processManager/processEditEmpty'),

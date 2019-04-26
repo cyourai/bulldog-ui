@@ -65,10 +65,10 @@
                    :loading="loading"
                    @click.native.prevent="handleLogin">登录</el-button>
 
-        <el-button type="primary"
+<!--        <el-button type="primary"
                    class="register-button"
                    :loading="loading"
-                   @click="toRegister">注册</el-button>
+                   @click="toRegister">注册</el-button>-->
 
         <span class="reset">
           <router-link to="/resetPassword">忘记密码了?</router-link>
@@ -303,6 +303,7 @@ $white: #ffffff;
     .reset {
       color: $white;
       margin-left: 40px;
+      margin-top: 20px;
       font-size: 10px;
       a:hover {
         text-decoration: underline;
