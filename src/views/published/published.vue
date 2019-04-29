@@ -224,7 +224,7 @@
   import ComponentFilter from '@/components/ComponentFilter'
   import ComponentFilterAdvanced from '@/components/ComponentFilterAdvanced'
   import ComponentInlineEdit from '@/components/ComponentInlineEdit'
-  import VueDialog from 'ctsi-vue-dialog'
+  import VueDialog from 'cyourai-vue-dialog'
   import { request, clearParam } from '@/utils'
 
   import {

@@ -127,7 +127,7 @@ import CodeMirrorEmpty from '@/components/CodeMirror/empty'
 import ScriptFilter from '@/components/ComponentFilter/scriptFilter'
 import HotTable from '@handsontable/vue'
 import Bus from '@/utils/bus.js'
-import { DialogTransfer } from 'ctsi-vue-dialog'
+import { DialogTransfer } from 'cyourai-vue-dialog'
 import {
   // 脚本
   getByScriptCode,
@@ -147,7 +147,7 @@ import {
   insertResultCheck
 } from '@/api/script/script'
 import keysGetLabels from '@/api/jobsManager/keysGetLabels'
-// import VueDialog from 'ctsi-vue-dialog'
+// import VueDialog from 'cyourai-vue-dialog'
 import { codemirror } from 'vue-codemirror-lite'
 import { params } from '@/utils/params'
 import { request, isEmpty } from '@/utils'

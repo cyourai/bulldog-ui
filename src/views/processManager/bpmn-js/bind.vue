@@ -110,7 +110,7 @@
 
 <script>
 import { isNotEmpty } from '@/utils'
-import { DialogTransfer, TimePicker } from 'ctsi-vue-dialog'
+import { DialogTransfer, TimePicker } from 'cyourai-vue-dialog'
 import {
   selectBindingInfo,
   saveActNodeUser,
@@ -121,7 +121,7 @@ import {
 } from '@/api/process/process'
 import { selectExpectTime, insertExpectTime, updateExpectTime } from '@/api/process/expectTime'
 // 绑定团队/工作组
-import { OrganizationUser } from 'ctsi-vue-dialog'
+import { OrganizationUser } from 'cyourai-vue-dialog'
 import Jobs from '@/views/jobsManager/jobs.vue'
 
 export default {

@@ -301,7 +301,7 @@
 </template>
 <script>
   import { request } from '@/utils/request'
-  import { PicMagnify } from 'ctsi-vue-dialog'
+  import { PicMagnify } from 'cyourai-vue-dialog'
   import store from '@/store'
   import { Message, errorMsg } from 'element-ui'
   import { params, closeView, isEmpty, debug, error } from '@/utils'

@@ -1,5 +1,5 @@
 <template>
-  <div class="human-edit-container" v-loading="loading">
+  <div class="human-edit-container">
     <!-- <div class="container"> -->
     <!-- 页内容 -->
     <div class="content">
@@ -23,9 +23,9 @@
                          :rules="formRules"
                          ref="formData"
                          label-width="80px"
-                         label-position="left">
+                         label-position="right">
                   <el-row v-if=false>
-                    <el-col :span="15"
+                    <el-col :span="16"
                             :offset="1">
                       <el-form-item label="用户编号"
                                     prop="humanCode">
@@ -34,7 +34,7 @@
                     </el-col>
                   </el-row>
                   <el-row>
-                    <el-col :span="15"
+                    <el-col :span="16"
                             :offset="1">
                       <el-form-item label="姓名"
                                     prop="humanName">
@@ -44,7 +44,7 @@
                     </el-col>
                   </el-row>
                   <el-row>
-                    <el-col :span="15"
+                    <el-col :span="17"
                             :offset="1">
                       <el-form-item label="性别"
                                     prop="humanSexual">
@@ -54,7 +54,7 @@
                     </el-col>
                   </el-row>
                   <el-row>
-                    <el-col :span="15"
+                    <el-col :span="16"
                             :offset="1">
                       <el-form-item label="邮件"
                                     prop="humanEmail">
@@ -64,27 +64,20 @@
                     </el-col>
                   </el-row>
                   <el-row>
-                    <el-col :span="15"
+                    <el-col :span="16"
                             :offset="1">
                       <el-form-item label="生日"
                                     prop="humanBirthday">
-                        <el-input v-model="formData.humanBirthday"
-                                  placeholder="请填写您的生日"></el-input>
+                        <el-date-picker
+                          v-model="formData.humanBirthday"
+                          type="date"
+                          placeholder="选择日期">
+                        </el-date-picker>
                       </el-form-item>
                     </el-col>
                   </el-row>
                   <el-row>
-                    <el-col :span="15"
-                            :offset="1">
-                      <el-form-item label="头像路径"
-                                    prop="humanAvatar">
-                        <el-input v-model="formData.humanAvatar"
-                                  placeholder="头像路径"></el-input>
-                      </el-form-item>
-                    </el-col>
-                  </el-row>
-                  <el-row>
-                    <el-col :span="15"
+                    <el-col :span="16"
                             :offset="1">
                       <el-form-item label="手机"
                                     prop="humanMobile">
@@ -94,7 +87,7 @@
                     </el-col>
                   </el-row>
 <!--                  <el-row>
-                    <el-col :span="15"
+                    <el-col :span="16"
                             :offset="1">
                       <el-form-item label="qq"
                                     prop="humanQq">
@@ -104,7 +97,7 @@
                     </el-col>
                   </el-row>
                   <el-row>
-                    <el-col :span="15"
+                    <el-col :span="16"
                             :offset="1">
                       <el-form-item label="微信号"
                                     prop="humanWechat">
@@ -114,9 +107,9 @@
                     </el-col>
                   </el-row>-->
                   <el-row>
-                    <el-col :span="15"
+                    <el-col :span="16"
                             :offset="1">
-                      <el-form-item label="户口"
+                      <el-form-item label="户口地"
                                     prop="humanResidence">
                         <el-input v-model="formData.humanResidence"
                                   placeholder="请填写您户口所在地"></el-input>
@@ -124,7 +117,7 @@
                     </el-col>
                   </el-row>
                   <el-row>
-                    <el-col :span="15"
+                    <el-col :span="16"
                             :offset="1">
                       <el-form-item label="毕业学校"
                                     prop="humanSchool">
@@ -134,7 +127,7 @@
                     </el-col>
                   </el-row>
                   <el-row>
-                    <el-col :span="15"
+                    <el-col :span="16"
                             :offset="1">
                       <el-form-item label="专业"
                                     prop="humanMajor">
@@ -144,7 +137,7 @@
                     </el-col>
                   </el-row>
                   <el-row>
-                    <el-col :span="15"
+                    <el-col :span="16"
                             :offset="1">
                       <el-form-item label="求职意向"
                                     prop="humanIntension">
@@ -154,7 +147,7 @@
                     </el-col>
                   </el-row>
                   <el-row>
-                    <el-col :span="15"
+                    <el-col :span="16"
                             :offset="1">
                       <el-form-item label="职称"
                                     prop="humanTitle">
@@ -164,7 +157,7 @@
                     </el-col>
                   </el-row>
                   <el-row>
-                    <el-col :span="15"
+                    <el-col :span="16"
                             :offset="1">
                       <el-form-item label="医院"
                                     prop="humanHospital">
@@ -174,7 +167,7 @@
                     </el-col>
                   </el-row>
                   <el-row>
-                    <el-col :span="15"
+                    <el-col :span="22"
                             :offset="1">
                       <el-form-item label="备注"
                                     prop="remark">
@@ -193,7 +186,8 @@
                         <el-button type="primary"
                                    icon="el-icon-tickets"
                                    class="largeBtn"
-                                     @click="submitForm()"> 投递职位
+                                   :disabled="disable"
+                                   @click="submitForm()"> 投递职位
                         </el-button>
                       </el-form-item>
                     </el-col>
@@ -211,9 +205,9 @@
 </template>
 <script>
   import ComponentForm from '@/components/ComponentForm'
-  import { VueDialog, PicMagnify } from 'ctsi-vue-dialog'
+  import { VueDialog, PicMagnify } from 'cyourai-vue-dialog'
   import { params } from '@/utils'
-  import { update, insert, getByCode } from '@/api/emergency/team'
+  import { insert } from '@/api/human'
 
   export default {
     name: 'humanSignIn',
@@ -223,7 +217,7 @@
     data() {
       return {
         visible: false,
-        loading: false,
+        disable: false,
         // 是否编辑模式
         isEdit: false,
         // 表单数据
@@ -272,25 +266,22 @@
             [
               { required: true, message: '请输入序号', trigger: 'blur' }
             ],
-          humanCode:
-            [
-              { required: true, message: '请输入用户编号', trigger: 'blur' }
-            ],
           humanName:
             [
               { required: true, message: '请输入姓名', trigger: 'blur' }
             ],
           humanEmail:
             [
-              { required: true, message: '请输入邮件', trigger: 'blur' }
-            ],
-          humanBirthday:
-            [
-              { required: true, message: '请输入生日', trigger: 'blur' }
+              { required: true, message: '请输入邮件', trigger: 'blur' },
+              { type: 'email', message: '邮箱地址不正确', trigger: 'blur' }
             ],
           humanMobile:
             [
               { required: true, message: '请输入手机', trigger: 'blur' }
+            ],
+          humanBirthday:
+            [
+              { required: true, message: '请输入生日', trigger: 'blur' }
             ],
           humanResidence:
             [
@@ -324,46 +315,18 @@
     },
     methods: {
       init() {
-        // 渲染编辑数据
-        if (this.isEdit) {
-          this.loading = true
-          getByCode(this.formData.teamCode).then(result => {
-            this.formData = result.data
-          }).finally(() => {
-            this.loading = false
-          })
-        }
-      },
-      close() {
-        // 关闭
-        this.$router.push({
-          path: '/emergency/team'
-        })
       },
       submitForm() {
         this.$refs['formData'].validate(valid => {
-          this.loading = true
-          if (valid && this.isEdit) {
-            // 更新
-            update(this.formData).finally(() => {
-              this.loading = false
-            })
-          } else if (valid && !this.isEdit) {
-            // 新增
-            // console.debug(this.formData)
-            insert(this.formData).finally(() => {
-              this.loading = false
+          if (valid) {
+            this.disable = true
+            insert(this.formData).then(response => {
+              alert(response.data.message)
+            }).finally(() => {
+              this.disable = false
             })
           }
         })
-      },
-      confirmHandler(params) {
-        this.visible = false
-        this.loading = true
-        if (Array.isArray(params.galleryList) && params.galleryList.length > 0) {
-          this.formData.icon = params.galleryList[0]
-        }
-        this.loading = false
       }
     }
   }
@@ -380,6 +343,11 @@
     }
     .largeBtn {
       width: 90%;
+    }
+    .content-spe-element {
+      padding-left: 0px!important;
+      padding-right: 0px!important;
+      width: 100%!important;
     }
   }
 </style>

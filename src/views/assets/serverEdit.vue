@@ -110,7 +110,7 @@ import {
   insertServer
 } from '@/api/assets/assets'
 import { select } from '@/api/components/component'
-import { TinymceGallery } from 'ctsi-vue-dialog'
+import { TinymceGallery } from 'cyourai-vue-dialog'
 import { params } from '@/utils/params'
 import { validateIP } from '@/utils/validate'
 

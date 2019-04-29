@@ -128,7 +128,7 @@ import ComponentTable from '@/components/ComponentTable'
 import CodeMirror from '@/components/CodeMirror'
 import { getParamsAll } from '@/api/settings/dictParams'
 import HotTable from '@handsontable/vue'
-import VueDialog from 'ctsi-vue-dialog'
+import VueDialog from 'cyourai-vue-dialog'
 
 export default {
   name: 'scriptcreate',

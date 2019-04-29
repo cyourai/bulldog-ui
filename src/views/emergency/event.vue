@@ -150,7 +150,7 @@
 <script>
 import ComponentSelect from '@/components/ComponentSelect'
 import ComponentFilter from '@/components/ComponentFilter'
-import { TableGrid, DialogTransfer } from 'ctsi-vue-dialog'
+import { TableGrid, DialogTransfer } from 'cyourai-vue-dialog'
 import { deleteByCode, batctExecute } from '@/api/emergency/event'
 import { clearParam, request } from '@/utils'
 

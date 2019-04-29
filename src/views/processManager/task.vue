@@ -93,7 +93,7 @@
 
 <script>
 import ComponentFilter from '@/components/ComponentFilter'
-import { TableGrid } from 'ctsi-vue-dialog'
+import { TableGrid } from 'cyourai-vue-dialog'
 import { isNotEmpty } from '@/utils'
 import ShowModel from '@/components/ComponentButton/showModel'
 

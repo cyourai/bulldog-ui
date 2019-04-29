@@ -200,7 +200,7 @@
 
 <script>
 import ComponentFilter from '@/components/ComponentFilter'
-import VueDialog from 'ctsi-vue-dialog'
+import VueDialog from 'cyourai-vue-dialog'
 import { select } from '@/api/components/component'
 import {
   selectScriptByPage,

@@ -94,7 +94,7 @@
 <script>
   import ComponentSelect from '@/components/ComponentSelect'
   import ComponentForm from '@/components/ComponentForm'
-  import { TinymceGallery } from 'ctsi-vue-dialog'
+  import { TinymceGallery } from 'cyourai-vue-dialog'
   import { params, isNotEmpty } from '@/utils'
   import { update, insert, getByCode } from '@/api/process/validate'
 

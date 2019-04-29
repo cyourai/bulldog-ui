@@ -171,7 +171,7 @@
 
 <script>
 import ComponentFilter from '@/components/ComponentFilter'
-import VueDialog from 'ctsi-vue-dialog'
+import VueDialog from 'cyourai-vue-dialog'
 import { select } from '@/api/components/component'
 import { selectTemplateByPage } from '@/api/script/script'
 import { clearParam } from '@/utils'

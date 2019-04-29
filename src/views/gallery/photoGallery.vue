@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import VueDialog from 'ctsi-vue-dialog'
+import VueDialog from 'cyourai-vue-dialog'
 
 export default {
   name: 'PhotoGallery',

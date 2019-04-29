@@ -34,7 +34,7 @@ router.beforeEach((to, from, next) => {
             user.roles.forEach(element => {
               roles.push(element.roleKey)
             })
-            if (roles.indexOf('admin') < 0) {
+            if (roles.indexOf('admin') < 0 && roles.indexOf('hradmin') < 0) {
               // 后台仅限管理员登录
               store.dispatch('FedLogOut').then(() => {
                 Message.error('当前用户没有权限进入系统')

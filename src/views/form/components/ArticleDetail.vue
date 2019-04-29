@@ -183,7 +183,7 @@
 </template>
 
 <script>
-  import TinymceGallery from 'ctsi-vue-dialog'
+  import TinymceGallery from 'cyourai-vue-dialog'
   import Upload from '@/components/Upload/singleImage3'
   import MDinput from '@/components/MDinput'
   import Multiselect from 'vue-multiselect' // 使用的一个多选框组件，element-ui的select不能满足所有需求

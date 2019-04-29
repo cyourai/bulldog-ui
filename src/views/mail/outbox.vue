@@ -80,7 +80,7 @@
 import ComponentForm from '@/components/ComponentForm'
 import { getUserAll } from '@/api/user/user'
 import { insertMessage } from '@/api/mail/message'
-import { TinymceGallery } from 'ctsi-vue-dialog'
+import { TinymceGallery } from 'cyourai-vue-dialog'
 import { params } from '@/utils/params'
 
 export default {

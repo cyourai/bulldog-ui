@@ -226,7 +226,7 @@
 
 <script>
 import ComponentFilter from '@/components/ComponentFilter'
-import { TableGrid, PicMagnify } from 'ctsi-vue-dialog'
+import { TableGrid, PicMagnify } from 'cyourai-vue-dialog'
 import { request, isNotEmpty } from '@/utils'
 import { delProcessInstance, createQrcode, updateVariables } from '@/api/process/process'
 import ShowModel from '@/components/ComponentButton/showModel'

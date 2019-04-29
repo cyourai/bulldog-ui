@@ -301,7 +301,7 @@
   import { Message } from 'element-ui'
   import { debug, error } from '@/utils/log'
   import { closeView } from '@/utils/close'
-  import { PicMagnify, VueDialog } from 'ctsi-vue-dialog'
+  import { PicMagnify, VueDialog } from 'cyourai-vue-dialog'
   import { params } from '@/utils/params'
   import ComponentCascader from '@/components/ComponentCascader'
 

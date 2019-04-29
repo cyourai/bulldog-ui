@@ -77,7 +77,7 @@ https://cn.vuejs.org/v2/guide/components.html
 
 - 在 src 目录下添加 index.js
   .单组件参考 ctsi-vue-tinymce
-  .组件库参考 ctsi-vue-dialog
+  .组件库参考 cyourai-vue-dialog
   .复杂组件库参考 element-ui
 
 - 发布到 npm

@@ -98,30 +98,30 @@
           </div>
         </div>
       </el-col>
-      <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-        <div class="card-panel" @click="handleSetLineChartData('purchases')">
-          <div class="card-panel-icon-wrapper icon-money">
-            <svg-icon icon-class="money" class-name="card-panel-icon"/>
-          </div>
-          <div class="card-panel-description">
-            <div class="card-panel-text">成交总金额 </div>
-            {{allMoney}}
-            <!--<count-to class="card-panel-num" :startVal="0" :endVal="allMoney" :duration="3000"></count-to>-->
-          </div>
-        </div>
-      </el-col>
-      <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-        <div class="card-panel" @click="handleSetLineChartData('shoppings')">
-          <div class="card-panel-icon-wrapper icon-shoppingCard">
-            <svg-icon icon-class="shoppingCard" class-name="card-panel-icon"/>
-          </div>
-          <div class="card-panel-description">
-            <div class="card-panel-text">订单总数 </div>
-            {{orderCount}}
-            <!--<count-to class="card-panel-num" :startVal="0" :endVal="orderCount" :duration="3600"></count-to>-->
-          </div>
-        </div>
-      </el-col>
+      <!--      <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
+              <div class="card-panel" @click="handleSetLineChartData('purchases')">
+                <div class="card-panel-icon-wrapper icon-money">
+                  <svg-icon icon-class="money" class-name="card-panel-icon"/>
+                </div>
+                <div class="card-panel-description">
+                  <div class="card-panel-text">成交总金额 </div>
+                  {{allMoney}}
+                  &lt;!&ndash;<count-to class="card-panel-num" :startVal="0" :endVal="allMoney" :duration="3000"></count-to>&ndash;&gt;
+                </div>
+              </div>
+            </el-col>
+            <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
+              <div class="card-panel" @click="handleSetLineChartData('shoppings')">
+                <div class="card-panel-icon-wrapper icon-shoppingCard">
+                  <svg-icon icon-class="shoppingCard" class-name="card-panel-icon"/>
+                </div>
+                <div class="card-panel-description">
+                  <div class="card-panel-text">订单总数 </div>
+                  {{orderCount}}
+                  &lt;!&ndash;<count-to class="card-panel-num" :startVal="0" :endVal="orderCount" :duration="3600"></count-to>&ndash;&gt;
+                </div>
+              </div>
+            </el-col>-->
     </el-row>
   </div>
 </template>
@@ -130,7 +130,7 @@
 import CountTo from 'vue-count-to'
 import { selectAllUserCount } from '@/api/user/user'
 import { getUnReadMessageCount } from '@/api/mail/message'
-import { selectCountSumOfMoney, selecOrdertCount } from '@/api/order/order'
+// import { selectCountSumOfMoney, selecOrdertCount } from '@/api/order/order'
 
 export default {
   components: {
@@ -145,12 +145,12 @@ export default {
     getUnReadMessageCount().then(result => {
       this.unReadMessageCount = result.data.messageCount
     }).catch(() => { this.unReadMessageCount = 0 })
-    selectCountSumOfMoney().then(result => {
-      this.allMoney = result.data.allMoney
-    }).catch(() => { this.allMoney = 0 })
-    selecOrdertCount().then(result => {
-      this.orderCount = result.data.data
-    }).catch(() => { this.orderCount = 0 })
+    // selectCountSumOfMoney().then(result => {
+    //   this.allMoney = result.data.allMoney
+    // }).catch(() => { this.allMoney = 0 })
+    // selecOrdertCount().then(result => {
+    //   this.orderCount = result.data.data
+    // }).catch(() => { this.orderCount = 0 })
   },
   methods: {
     handleSetLineChartData(type) {

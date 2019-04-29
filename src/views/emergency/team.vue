@@ -124,7 +124,7 @@
 
 <script>
   import ComponentFilter from '@/components/ComponentFilter'
-  import { TableGrid, PicMagnify } from 'ctsi-vue-dialog'
+  import { TableGrid, PicMagnify } from 'cyourai-vue-dialog'
   import { deleteByCode, batctExecute, synchronizedUser } from '@/api/emergency/team'
   import { clearParam } from '@/utils'
 

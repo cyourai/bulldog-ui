@@ -370,7 +370,7 @@
 </template>
 
 <script>
-  import { PicMagnify, VueDialog } from 'ctsi-vue-dialog'
+  import { PicMagnify, VueDialog } from 'cyourai-vue-dialog'
   import { isEmpty, request } from '@/utils'
   import { insert, update, selectSettingByGroup } from '@/api/settings/settings'
   import { getByCode } from '@/api/published/published'

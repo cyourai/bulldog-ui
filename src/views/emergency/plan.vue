@@ -212,7 +212,7 @@
 <script>
   import ComponentSelect from '@/components/ComponentSelect'
   import ComponentFilter from '@/components/ComponentFilter'
-  import { TableGrid, TableHeader, VueTree, DialogTransfer } from 'ctsi-vue-dialog'
+  import { TableGrid, TableHeader, VueTree, DialogTransfer } from 'cyourai-vue-dialog'
   import { isNotEmpty, request } from '@/utils'
   import { insert, deleteByCode, update } from '@/api/emergency/plan'
   import { downloadFile, delFile } from '@/api/upload'

@@ -18,8 +18,8 @@
 </template>
 
 <script>
-// ctsi-vue-dialog是组件库，按需引入某个组件需要加括号
-import { PicMagnify, VueDialog } from 'ctsi-vue-dialog'
+// cyourai-vue-dialog是组件库，按需引入某个组件需要加括号
+import { PicMagnify, VueDialog } from 'cyourai-vue-dialog'
 
 export default {
   name: 'TestPicMagnify',

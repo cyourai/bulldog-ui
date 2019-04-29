@@ -84,7 +84,7 @@
   import ComponentTable from '@/components/ComponentTable'
   import ComponentForm from '@/components/ComponentForm'
   import { request, params } from '@/utils'
-  import { TinymceMarkdown } from 'ctsi-vue-dialog'
+  import { TinymceMarkdown } from 'cyourai-vue-dialog'
 
   export default {
     name: 'planFileEdit',

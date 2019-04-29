@@ -94,7 +94,7 @@
   import ComponentForm from '@/components/ComponentForm'
   import ComponentSelect from '@/components/ComponentSelect'
   import { Message } from 'element-ui'
-  import { TinymceGallery } from 'ctsi-vue-dialog'
+  import { TinymceGallery } from 'cyourai-vue-dialog'
   import { request, isEmpty } from '@/utils'
 
   export default {

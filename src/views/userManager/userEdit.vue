@@ -185,7 +185,7 @@
 import ComponentForm from '@/components/ComponentForm'
 import { getByUserName, update, insert, uploadAvatar } from '@/api/user/user'
 import { getRoleAll } from '@/api/role/role'
-import { TinymceGallery } from 'ctsi-vue-dialog'
+import { TinymceGallery } from 'cyourai-vue-dialog'
 import { params } from '@/utils/params'
 import Bus from '@/utils/bus.js'
 
@@ -259,7 +259,7 @@ export default {
         getByUserName(this.name)
           .then(result => {
             this.formData = result.data
-            // this.formData.userPassword = ''
+            this.formData.userPassword = null
             // 解析roles
             const SelectRoles = []
             for (const role of this.formData.roles) {

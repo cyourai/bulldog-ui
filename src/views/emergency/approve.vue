@@ -105,7 +105,7 @@
 <script>
   import ComponentSelect from '@/components/ComponentSelect'
   import ComponentFilter from '@/components/ComponentFilter'
-  import { TableGrid, DialogTransfer } from 'ctsi-vue-dialog'
+  import { TableGrid, DialogTransfer } from 'cyourai-vue-dialog'
   import { next } from '@/api/approve/approve'
   import { updateStatus } from '@/api/emergency/event'
   import store from '@/store'

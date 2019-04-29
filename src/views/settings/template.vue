@@ -165,7 +165,7 @@
   import { deleteByCode, batctExecute } from '@/api/template'
   import { selectSettingByKey } from '@/api/settings/settings'
   import { sendMail } from '@/api/mail/message'
-  import { TableGrid } from 'ctsi-vue-dialog'
+  import { TableGrid } from 'cyourai-vue-dialog'
   import { clearParam } from '@/utils'
 
   export default {

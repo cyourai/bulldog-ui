@@ -188,7 +188,7 @@ import {
   update,
   batctExecute
 } from '@/api/mail/message'
-import { TinymceGallery } from 'ctsi-vue-dialog'
+import { TinymceGallery } from 'cyourai-vue-dialog'
 import { clearParam } from '@/utils'
 
 export default {

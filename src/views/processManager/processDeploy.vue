@@ -245,7 +245,7 @@ import {
   insertProcessModel
 } from '@/api/process/process'
 import { request, isEmpty } from '@/utils'
-import { TableGrid } from 'ctsi-vue-dialog'
+import { TableGrid } from 'cyourai-vue-dialog'
 
 export default {
   name: 'process-deploy',

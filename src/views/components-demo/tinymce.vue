@@ -22,7 +22,7 @@
 </template>
 
 <script>
-  import TinymceGallery from 'ctsi-vue-dialog'
+  import TinymceGallery from 'cyourai-vue-dialog'
 
   export default {
     components: { TinymceGallery },

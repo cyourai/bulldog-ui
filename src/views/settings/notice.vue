@@ -145,7 +145,7 @@
 <script>
 import ComponentSelect from '@/components/ComponentSelect'
 import ComponentFilter from '@/components/ComponentFilter'
-import { TableGrid } from 'ctsi-vue-dialog'
+import { TableGrid } from 'cyourai-vue-dialog'
 import { insert, update, deleteByCode } from '@/api/settings/notice'
 
 export default {

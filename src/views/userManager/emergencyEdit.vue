@@ -185,7 +185,7 @@
 import ComponentForm from '@/components/ComponentForm'
 import { getByUserName, update, insert, uploadAvatar } from '@/api/user/user'
 import { getRoleAll } from '@/api/role/role'
-import { TinymceGallery } from 'ctsi-vue-dialog'
+import { TinymceGallery } from 'cyourai-vue-dialog'
 import { params } from '@/utils/params'
 import Bus from '@/utils/bus.js'
 

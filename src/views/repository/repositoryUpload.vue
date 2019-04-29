@@ -121,7 +121,7 @@
 
 <script>
   import { isNotEmpty, request } from '@/utils'
-  import { TableGrid, TableHeader, VueTree, TableFile } from 'ctsi-vue-dialog'
+  import { TableGrid, TableHeader, VueTree, TableFile } from 'cyourai-vue-dialog'
 
   export default {
     name: 'repositoryUpload',

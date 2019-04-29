@@ -173,7 +173,7 @@
   import ComponentSelect from '@/components/ComponentSelect'
   import ComponentForm from '@/components/ComponentForm'
   import Plan from './plan'
-  import { TinymceGallery } from 'ctsi-vue-dialog'
+  import { TinymceGallery } from 'cyourai-vue-dialog'
   import { params, isEmpty } from '@/utils'
   import { agree, reject } from '@/api/approve/approve'
   import { update, insert, getByCode, updateStatus } from '@/api/emergency/event'

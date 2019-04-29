@@ -18,7 +18,7 @@ import './icons' // icon
 import './errorLog' // error log
 import './permission' // permission control
 import './mock' // simulation data
-
+import Toast from '@/components/Toast'
 import * as filters from './filters' // global filters
 
 // V-charts
@@ -29,7 +29,7 @@ Vue.use(VCharts)
 import VueCodemirror from 'vue-codemirror'
 import 'codemirror/lib/codemirror.css'
 Vue.use(VueCodemirror)
-
+Vue.use(Toast)
 // Vue.component('tinymce', tinymce)
 Vue.use(Element, {
   size: 'medium', // set element-ui default size

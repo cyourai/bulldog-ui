@@ -195,7 +195,7 @@ export function getLikeUserName(userName) {
 // 获取注册用户数
 export function selectAllUserCount() {
   return request({
-    url: '/user/selectAllUserCount',
+    url: '/user/front/permit/selectAllUserCount',
     method: 'get'
   })
 }

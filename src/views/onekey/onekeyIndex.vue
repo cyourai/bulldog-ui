@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { OnekeyIndex } from 'ctsi-vue-dialog'
+import { OnekeyIndex } from 'cyourai-vue-dialog'
 
 export default {
   name: 'onekey-index',

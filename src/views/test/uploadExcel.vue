@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import VueDialog from 'ctsi-vue-dialog'
+import VueDialog from 'cyourai-vue-dialog'
 import { request } from '@/utils/request'
 
 export default {

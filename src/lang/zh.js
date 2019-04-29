@@ -71,6 +71,8 @@ export default {
     formElement: '表单元素',
     gallery: '图片库',
     handsontable: '表格编辑',
+    human: '人力资源',
+    humanSignin: '应聘人员',
     i18n: '国际化',
     icons: '图标',
     inbox: '收件箱',
@@ -208,7 +210,9 @@ export default {
     AddTags: '添加标签'
   },
   human: {
-    signInTitle: '请填写您的资料'
+    signInTitle: '请填写您的资料',
+    sign: '应聘人员',
+    signList: '应聘人员列表'
   },
   navbar: {
     logOut: '退出登录',

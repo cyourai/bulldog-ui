@@ -127,7 +127,7 @@
 </template>
 <script>
   import ComponentForm from '@/components/ComponentForm'
-  import { VueDialog, PicMagnify } from 'ctsi-vue-dialog'
+  import { VueDialog, PicMagnify } from 'cyourai-vue-dialog'
   import { params } from '@/utils'
   import { update, insert, getByCode } from '@/api/emergency/team'
 

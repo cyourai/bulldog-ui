@@ -146,7 +146,7 @@
   import { params, parseTime, isNotEmpty, request } from '@/utils'
   import { getTaskById } from '@/api/process/process'
   import { getJobByJobsCode, executeJob } from '@/api/jobsManager/jobs'
-  import { TableGrid } from 'ctsi-vue-dialog'
+  import { TableGrid } from 'cyourai-vue-dialog'
   import approveContainer from '@/views/approve/approveContainer'
 
   export default {

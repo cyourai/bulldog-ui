@@ -264,7 +264,7 @@
 <script>
   import ComponentForm from '@/components/ComponentForm'
   import ComponentCascader from '@/components/ComponentCascader'
-  import { TinymceGallery, VueDialog } from 'ctsi-vue-dialog'
+  import { TinymceGallery, VueDialog } from 'cyourai-vue-dialog'
   import { getByCode, update, insert } from '@/api/mediaSeller/mediaSeller'
   import { params, isNotEmpty } from '@/utils'
 

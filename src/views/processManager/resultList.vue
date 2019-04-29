@@ -134,7 +134,7 @@
 
 <script>
 import ComponentFilter from '@/components/ComponentFilter'
-import { TableGrid } from 'ctsi-vue-dialog'
+import { TableGrid } from 'cyourai-vue-dialog'
 import { request, isNotEmpty } from '@/utils'
 import Chart from './resultChart/mixChart'
 import { updateScore } from '@/api/process/process'

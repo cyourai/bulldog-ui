@@ -70,7 +70,7 @@
 </template>
 
 <script>
-  import { TinymceGallery } from 'ctsi-vue-dialog'
+  import { TinymceGallery } from 'cyourai-vue-dialog'
   import { isEmpty, objectMerge } from '@/utils'
   import { agreeTaskWithVariable, rejectTaskWithVariable, nextTaskWithVariable } from '@/api/approve/approve'
 

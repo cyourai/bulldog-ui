@@ -18,7 +18,7 @@
 </template>
 
 <script>
-  import { OrganizationUser } from 'ctsi-vue-dialog'
+  import { OrganizationUser } from 'cyourai-vue-dialog'
 
   export default {
     name: 'organization',

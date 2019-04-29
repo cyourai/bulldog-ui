@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { OnekeyStart } from 'ctsi-vue-dialog'
+import { OnekeyStart } from 'cyourai-vue-dialog'
 
 export default {
   name: 'onekey-start',

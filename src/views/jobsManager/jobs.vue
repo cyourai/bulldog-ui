@@ -264,7 +264,7 @@
 import ComponentSelect from '@/components/ComponentSelect'
 import ComponentFilter from '@/components/ComponentFilter'
 import { select } from '@/api/components/component'
-import { TableGrid, TableHeader, VueTree, DialogTransfer, TimePicker } from 'ctsi-vue-dialog'
+import { TableGrid, TableHeader, VueTree, DialogTransfer, TimePicker } from 'cyourai-vue-dialog'
 import { isNotEmpty, request } from '@/utils'
 import { insert, deleteByCode, update, executeJob } from '@/api/jobsManager/jobs'
 import { selectExpectTime, insertMainExpectTime, updateMainExpectTime } from '@/api/process/expectTime'

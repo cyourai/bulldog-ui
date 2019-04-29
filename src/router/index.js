@@ -1091,7 +1091,7 @@ export const asyncRouterMap = [{
     meta: {
       title: 'settings',
       icon: 'setting',
-      roles: ['yqadmin', 'admin']
+      roles: ['yqadmin', 'admin', 'hradmin']
     },
     children: [{
         path: 'dict',
@@ -1123,7 +1123,8 @@ export const asyncRouterMap = [{
         component: _import('settings/log'),
         name: 'log',
         meta: {
-          title: 'log'
+          title: 'log',
+          roles: ['admin']
         }
       },
       {
@@ -1131,7 +1132,8 @@ export const asyncRouterMap = [{
         component: _import('settings/menuEdit'),
         name: 'menuEdit',
         meta: {
-          title: 'menuEdit'
+          title: 'menuEdit',
+          roles: ['admin']
         }
       },
       {
@@ -1139,7 +1141,8 @@ export const asyncRouterMap = [{
         component: _import('settings/config'),
         name: 'config',
         meta: {
-          title: 'config'
+          title: 'config',
+          roles: ['admin']
         }
       },
       {
@@ -1148,7 +1151,8 @@ export const asyncRouterMap = [{
         name: 'template-msg',
         meta: {
           title: 'templateMsg',
-          type: 'msg'
+          type: 'msg',
+          roles: ['admin']
         }
       },
       {
@@ -1157,7 +1161,8 @@ export const asyncRouterMap = [{
         name: 'template-mail',
         meta: {
           title: 'templateMail',
-          type: 'mail'
+          type: 'mail',
+          roles: ['admin']
         }
       },
       {
@@ -1165,7 +1170,8 @@ export const asyncRouterMap = [{
         component: _import('settings/templateEdit'),
         name: 'template-edit',
         meta: {
-          title: 'templateEdit'
+          title: 'templateEdit',
+          roles: ['admin']
         },
         hidden: true
       },
@@ -1192,7 +1198,8 @@ export const asyncRouterMap = [{
         component: _import('settings/notice'),
         name: 'notice',
         meta: {
-          title: 'notice'
+          title: 'notice',
+          roles: ['admin']
         }
       },
     ]
@@ -1411,7 +1418,7 @@ export const asyncRouterMap = [{
     meta: {
       title: 'userManager',
       icon: 'user',
-      roles: ['yqadmin', 'admin']
+      roles: ['hradmin', 'admin']
     },
     children: [{
         path: 'user',
@@ -1461,7 +1468,8 @@ export const asyncRouterMap = [{
         component: _import('userManager/emergency'),
         name: 'emergency',
         meta: {
-          title: 'emergency'
+          title: 'emergency',
+          roles: ['admin']
         }
       },
       {
@@ -1469,7 +1477,8 @@ export const asyncRouterMap = [{
         component: _import('userManager/emergencyEdit'),
         name: 'emergency-edit',
         meta: {
-          title: 'emergencyEdit'
+          title: 'emergencyEdit',
+          roles: ['admin']
         },
         hidden: true
       },
@@ -1487,7 +1496,8 @@ export const asyncRouterMap = [{
         component: _import('userManager/access'),
         name: 'access',
         meta: {
-          title: 'access'
+          title: 'access',
+          roles: ['admin']
         }
       },
       {
@@ -1500,6 +1510,25 @@ export const asyncRouterMap = [{
         hidden: true
       }
     ]
+  },
+  {
+    path: '/human',
+    component: Layout,
+    redirect: '/human/signin',
+    alwaysShow: true,
+    meta: {
+      title: 'human',
+      icon: 'form',
+      roles: ['hradmin']
+    },
+    children: [{
+      path: 'signList',
+      component: _import('human/signList'),
+      name: 'humanSignin',
+      meta: {
+        title: 'humanSignin'
+      }
+    }]
   },
   {
     path: '/jobsManager',
@@ -1665,6 +1694,7 @@ export const asyncRouterMap = [{
     meta: {
       title: 'view',
       icon: 'eye',
+      roles: ['admin']
     },
     children: [{
       path: 'viewPlan',
@@ -1711,7 +1741,8 @@ export const asyncRouterMap = [{
     alwaysShow: true,
     meta: {
       title: 'material',
-      icon: 'pic'
+      icon: 'pic',
+      roles: ['admin']
     },
     children: [{
         path: 'photoGallery',

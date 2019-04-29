@@ -200,7 +200,7 @@
   </div>
 </template>
 <script>
-  import { TinymceGallery, VueDialog, PicMagnify } from 'ctsi-vue-dialog'
+  import { TinymceGallery, VueDialog, PicMagnify } from 'cyourai-vue-dialog'
   import { debug } from '@/utils'
   import Bus from '@/utils/bus'
   import {

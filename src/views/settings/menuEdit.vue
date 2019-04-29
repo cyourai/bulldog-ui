@@ -88,7 +88,7 @@
 
 <script>
   import { selectSettingByKey, update } from '@/api/settings/settings'
-  import { DialogTransfer } from 'ctsi-vue-dialog'
+  import { DialogTransfer } from 'cyourai-vue-dialog'
   import { isEmpty } from '@/utils'
 
   export default {

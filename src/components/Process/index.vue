@@ -216,7 +216,7 @@ import BpmnModeler from 'bpmn-js/lib/Modeler'
 import Modeling from 'bpmn-js/lib/features/modeling/Modeling'
 import { insertProcessModel, insertDeployedProcessModel, getByModelId } from '@/api/process/process'
 import { params } from '@/utils/params'
-import { DialogTransfer } from 'ctsi-vue-dialog'
+import { DialogTransfer } from 'cyourai-vue-dialog'
 import { request } from '@/utils'
 import keysGetLabels from './keysGetLabels'
 

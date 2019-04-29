@@ -200,7 +200,7 @@
   import ComponentSelect from '@/components/ComponentSelect'
   import ComponentFilter from '@/components/ComponentFilter'
   import { select } from '@/api/components/component'
-  import { TableGrid } from 'ctsi-vue-dialog'
+  import { TableGrid } from 'cyourai-vue-dialog'
   import { insert, getByCode, update, deleteByCode, batctExecute } from '@/api/user/access'
   import { clearParam/*, request*/ } from '@/utils'
 
