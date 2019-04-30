@@ -4,7 +4,7 @@
     <!-- 页内容 -->
     <!-- 表单-form -->
     <div class="form-content">
-      <div class="container">
+      <div class="container" v-if="!loading">
         <el-form slot="form"
                  :model="formData"
                  :rules="formRules"
@@ -145,9 +145,9 @@
                     :offset="3">
               <el-form-item label="发票附件"
                             prop="auditInvoiceAttachement">
-                <span v-if="this.formData.auditInvoiceAttachement === ''">未提交</span>
+                <span v-if="formData.auditInvoiceAttachement === ''">未提交</span>
                 <span v-else>
-                  <a :href="this.formData.auditInvoiceAttachement">发票附件下载</a>
+                  <a :href="formData.auditInvoiceAttachement">发票附件下载</a>
                 </span>
               </el-form-item>
             </el-col>
@@ -155,7 +155,7 @@
           <el-row>
             <hr>
           </el-row>
-          <div v-if="formData.invoice!==''">
+          <div v-if="formData.invoice !=null && formData.invoice!==''">
             <el-row>
               <el-col :span="18"
                       :offset="3">
@@ -326,7 +326,9 @@
           industryUserIndeustryKey: '',
           // 广告主用户名
           industryUserUserName: '',
-          remark: ''
+          remark: '',
+          invoice: {
+          }
         },
         options: [],
         // 表单规则
@@ -356,26 +358,33 @@
         return request({
           url: '/media/audit/findAuditInvoiceByUserName/' + this.userName,
           method: 'get'
-        })
-          .then(result => {
-            this.formData = result.data
-            debug('init:', this.formData)
-            if (this.formData === null || this.formData === '') {
-              Message({
-                message: '用户未提交证明材料',
-                type: 'warning',
-                duration: 5 * 1000
-              })
+        }).then(result => {
+          this.formData = result.data
+          debug('init:', this.formData)
+          if (this.formData === null || this.formData === '') {
+            Message({
+              message: '用户未提交证明材料',
+              type: 'warning',
+              duration: 5 * 1000
+            })
+          } else {
+            if (this.formData.invoice == null) {
+              this.formData.invoice.invoiceName = ''
+              this.formData.invoice.invoiceCreditCode = ''
+              this.formData.invoice.invoiceRegisterAddress = ''
+              this.formData.invoice.invoiceRegisterPhone = ''
+              this.formData.invoice.invoiceBankName = ''
+              this.formData.invoice.invoiceBankAccount = ''
+              this.formData.invoice.invoicePostAddress = ''
             }
-          })
-          .catch(e => {
-            error(e)
-            errorMsg('无法找到该用户提交的资料')
-            this.loading = false
-          })
-          .finally(() => {
-            this.loading = false
-          })
+          }
+        }).catch(e => {
+          error(e)
+          errorMsg('无法找到该用户提交的资料')
+          this.loading = false
+        }).finally(() => {
+          this.loading = false
+        })
       },
       close() {
         closeView(this, this.viewName)

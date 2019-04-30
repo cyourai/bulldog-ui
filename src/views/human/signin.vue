@@ -36,6 +36,29 @@
                   <el-row>
                     <el-col :span="16"
                             :offset="1">
+                      <el-form-item label=""
+                                    prop="humanAvatar">
+                        <el-upload class="avatar-uploader"
+                                   ref="upload"
+                                   action=''
+                                   :http-request="uploadHandler"
+                                   :show-file-list='false'
+                                   accept=".jpg,.png,.bmp">
+                          <img v-if="formData.humanAvatar && formData.humanAvatar!==''"
+                               :src="formData.humanAvatar"
+                               class="avatar">
+                          <i v-else
+                             class="el-icon-plus avatar-uploader-icon"></i>
+                          <div slot="tip"
+                               class="avatar-uploader-tip">上传头像<br>图片仅限格式：jpg/png/bmp
+                          </div>
+                        </el-upload>
+                      </el-form-item>
+                    </el-col>
+                  </el-row>
+                  <el-row>
+                    <el-col :span="16"
+                            :offset="1">
                       <el-form-item label="姓名"
                                     prop="humanName">
                         <el-input v-model="formData.humanName"
@@ -208,7 +231,7 @@
   import { VueDialog, PicMagnify } from 'cyourai-vue-dialog'
   import { params } from '@/utils'
   import { insert } from '@/api/human'
-
+  import { request } from '@/utils'
   export default {
     name: 'humanSignIn',
     components: {
@@ -327,6 +350,33 @@
             })
           }
         })
+      },
+      uploadHandler(param) {
+        // console.debug('uploadHandler: %s', param)
+        this.loading = true
+        var form = new FormData()
+        form.append('file', param.file, param.file['filename'])
+        request({
+          // zuul/api 前置zuul对应上传中文问题
+          baseURL: process.env.BASE_API + process.env.ZUUL + process.env.PREFIX,
+          url: '/general/upload/uploadFile',
+          method: 'post',
+          data: form,
+          config: {
+            headers: {
+              'Content-Type': 'multipart/form-data;boundary=boundary'
+            },
+            field: param.file.name
+          }
+        }).then(result => {
+          console.debug(result)
+          this.userFormData.userAvatar = result.data.uploadOssUrl
+        }).catch((e) => {
+          console.error(e)
+        }).finally(() => {
+          this.fileList = []
+          this.loading = false
+        })
       }
     }
   }
@@ -348,6 +398,49 @@
       padding-left: 0px!important;
       padding-right: 0px!important;
       width: 100%!important;
+    }
+    .avatar {
+      width: 178px;
+      height: 178px;
+      display: block;
+
+      &-uploader {
+        & /deep/ img {
+          border-radius: 0;
+          margin: 0;
+        }
+
+        & /deep/ .el-upload-dragger {
+          width: 180px;
+          height: 180px;
+        }
+
+        .el-upload {
+          border: 1px dashed unquote('#d9d9d9');
+          border-radius: 6px;
+          cursor: pointer;
+          position: relative;
+          overflow: hidden;
+
+          &:hover {
+            border-color: unquote('#409eff');
+          }
+        }
+
+        &-icon {
+          font-size: 28px;
+          color: unquote('#8c939d');
+          width: 178px;
+          height: 178px;
+          line-height: 178px;
+          text-align: center;
+        }
+
+        &-tip {
+          font-size: 12px;
+          color: unquote('#909399');
+        }
+      }
     }
   }
 </style>

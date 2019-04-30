@@ -128,7 +128,7 @@ export default {
       },
       // 表头
       headers: [
-        { prop: 'humanAvatar', label: '头像路径', minWidth: '100', sortable: 'custom' },
+        { prop: 'humanAvatar', label: '头像', minWidth: '100', sortable: 'custom' },
         { prop: 'humanName', label: '用户名', minWidth: '100', sortable: 'custom' },
         { prop: 'humanSexual', label: '性别', minWidth: '100', sortable: 'custom' },
         { prop: 'humanMobile', label: '手机', minWidth: '100', sortable: 'custom' },

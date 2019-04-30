@@ -1273,7 +1273,7 @@ export const asyncRouterMap = [{
     meta: {
       title: 'processManager',
       icon: 'process',
-      roles: ['yqadmin', 'admin']
+      roles: ['admin']
     },
     children: [{
         path: 'process-edit',
