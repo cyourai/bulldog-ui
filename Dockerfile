@@ -7,13 +7,15 @@ ENV PATH /usr/bin;/usr/sbin:$PATH
 # RUN 配置nginx/nodejs环境
 RUN yum update -y
 RUN yum -y install rpm crul vim gcc-c++ make yarn
-RUN rpm -Uvh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
-RUN yum install -y nginx
+#RUN rpm -Uvh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
+#RUN yum install -y nginx
 RUN curl --silent --location https://rpm.nodesource.com/setup_8.x | bash -
 RUN yum install -y nodejs
+COPY ./nginx /workspaces/
 COPY ./dist /workspaces/html/bulldog-ui/dist
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 COPY entrypoint.sh /entrypoint.sh
+RUN rpm -ivh /workspaces/nginx-release-centos-7-0.el7.ngx.noarch.rpm
 RUN chmod +x /entrypoint.sh
 # EXPOSE 映射端口
 EXPOSE 80
