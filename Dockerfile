@@ -9,8 +9,8 @@ RUN yum update -y
 RUN yum -y install rpm crul vim gcc-c++ make yarn
 #RUN rpm -Uvh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
 #RUN yum install -y nginx
-RUN curl --silent --location https://rpm.nodesource.com/setup_8.x | bash -
-RUN yum install -y nodejs
+#RUN curl --silent --location https://rpm.nodesource.com/setup_8.x | bash -
+#RUN yum install -y nodejs
 COPY ./nginx /workspaces/
 COPY ./dist /workspaces/html/bulldog-ui/dist
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
