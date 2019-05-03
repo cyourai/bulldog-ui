@@ -107,6 +107,7 @@ npm 新用户，需先注册方能发布组件
   npm install stylus-loader --save-dev
   npm install node-sass --save-dev
   npm install sass-loader --save-dev
+  npm install less less-loader --save-dev
 ```
 
 ### 9.解决 axios 不支持 finally
