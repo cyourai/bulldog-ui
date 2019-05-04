@@ -19,6 +19,14 @@ $screen-sm-min: 800px;
 $screen-md-min: 1024px;
 $screen-lg-min: 1920px;
 
+.light-blue {
+  color: nth($light-blue, 1)
+}
+
+.blue {
+  color: nth($blue, 2);
+}
+
 .error {
   color: nth($errors, 1);
 }

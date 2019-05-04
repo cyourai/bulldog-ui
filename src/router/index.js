@@ -1528,7 +1528,14 @@ export const asyncRouterMap = [{
       meta: {
         title: 'humanSignin'
       }
-    }]
+    }, {
+      path: 'signEdit',
+      component: _import('human/signEdit'),
+      name: 'signEdit',
+      meta: {
+        title: 'humanEdit'
+      },
+      hidden: true}]
   },
   {
     path: '/jobsManager',

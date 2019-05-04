@@ -39,7 +39,7 @@
         <x-input title="医院" v-model="formData.humanHospital" name="humanHospital"
                  placeholder="请填写您所在的医院" text-align="left"></x-input>
         <x-textarea title="备注" v-model="formData.remark" name="remark" :max="100"></x-textarea>
-        <x-button @click.native="handlerSubmit" type="primary">投递简历</x-button>
+        <x-button @click.native="handlerSubmit" type="primary" :disabled="disable">投递简历</x-button>
       </group>
     </div>
   </div>
@@ -58,6 +58,7 @@ export default {
   },
   data() {
     return {
+      disable: false,
       // 表单数据
       formData: {
         // 序号
@@ -155,11 +156,11 @@ export default {
         document.getElementsByName('humanSchool')[0].focus()
         return
       }
-      if (isEmpty(this.formData.humanTitle)) {
+      if (isEmpty(this.formData.humanMajor)) {
         AlertModule.show({
           content: '请填写专业名称'
         })
-        document.getElementsByName('humanTitle')[0].focus()
+        document.getElementsByName('humanMajor')[0].focus()
         return
       }
       if (isEmpty(this.formData.humanIntension)) {
@@ -171,6 +172,7 @@ export default {
       }
 
       // 新增
+      this.disable = true
       insert(this.formData)
         .then(result => {
           if (result.data.status === 20000) {
@@ -188,6 +190,8 @@ export default {
           AlertModule.show({
             content: '投递失败'
           })
+        }).finally(() => {
+          this.disable = false
         })
     }
   }
@@ -195,9 +199,9 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-  .human-container /deep/ {
-    .human-body {
-
+  .human-body /deep/ {
+    .weui-btn_primary {
+      background-color:#35495e !important;
     }
   }
 </style>

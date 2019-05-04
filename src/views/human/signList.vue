@@ -8,7 +8,6 @@
       <div class="content-spe">
         <p class="content-spe-title">{{$t('human.sign')}}</p>
         <div class="content-spe-element">
-
           <!-- 表格筛选 -->
           <component-filter>
             <el-form slot="filterForm"
@@ -31,9 +30,9 @@
                           @keyup.enter.native="refreshTable"
                           placeholder="求职意向"></el-input>
               </el-form-item>
-              <el-form-item label="是否已读："
-                            prop="messageIsReceived">
-                <component-select type="isRead"
+              <el-form-item label="签约状态："
+                            prop="humanStatus">
+                <component-select type="humanStatus"
                                   defaultSelected=""
                                   isAll=true
                                   model="center"
@@ -65,13 +64,50 @@
                           :headers='headers'
                           :is-show-checkbox=false
                           :is-show-index=false
+                          :is-show-first=true
+                          :is-show-last=true
                           @selection-change="handleSelectionChange">
+                <!--首列追加操作列-->
+                <el-table-column slot="first-slot"
+                                 label="头像"
+                                 align="center">
+                  <template slot-scope="scope">
+                    <img v-if="scope.row.humanAvatar!=='' && scope.row.humanAvatar!==undefined"
+                         :src="scope.row.humanAvatar"
+                         width="50"
+                         height="50">
+                  </template>
+                </el-table-column>
                 <!--末尾追加操作列-->
+                <el-table-column slot="option-slot"
+                                 label="签约状态"
+                                 align="center">
+                  <template slot-scope="scope">
+                    <span v-if="scope.row.humanStatus === 0" class="blue">待定</span>
+                    <span v-if="scope.row.humanStatus === 1" class="ok">已签约</span>
+                    <span v-if="scope.row.humanStatus === 2" class="error">不符合</span>
+                  </template>
+                </el-table-column>
                 <el-table-column slot="option-slot"
                                  label="操作"
                                  align="center">
                   <template slot-scope="scope">
-
+                    <el-tooltip content="编辑"
+                                placement="left">
+                      <el-button plain
+                                 icon="el-icon-edit"
+                                 size="mini"
+                                 type="primary"
+                                 @click="openClickHandler(scope.row.eventCode)"></el-button>
+                    </el-tooltip>
+                    <el-tooltip content="删除"
+                                placement="right">
+                      <el-button plain
+                                 icon="el-icon-delete"
+                                 size="mini"
+                                 type="danger"
+                                 @click="del(scope.row)"></el-button>
+                    </el-tooltip>
                   </template>
                 </el-table-column>
               </table-grid>
@@ -89,14 +125,13 @@
 import ComponentFilter from '@/components/ComponentFilter'
 import ComponentSelect from '@/components/ComponentSelect'
 import { TableGrid } from 'cyourai-vue-dialog'
-import { TinymceGallery } from 'cyourai-vue-dialog'
+import { deleteByCode } from '@/api/human'
 
 export default {
   name: 'signList',
   components: {
     ComponentFilter,
     ComponentSelect,
-    TinymceGallery,
     TableGrid
   },
   data() {
@@ -128,37 +163,51 @@ export default {
       },
       // 表头
       headers: [
-        { prop: 'humanAvatar', label: '头像', minWidth: '100', sortable: 'custom' },
         { prop: 'humanName', label: '用户名', minWidth: '100', sortable: 'custom' },
         { prop: 'humanSexual', label: '性别', minWidth: '100', sortable: 'custom' },
         { prop: 'humanMobile', label: '手机', minWidth: '100', sortable: 'custom' },
         { prop: 'humanSchool', label: '毕业学校', minWidth: '100', sortable: 'custom' },
-        { prop: 'humanIntension', label: '求职意向', minWidth: '100', sortable: 'custom' },
-        { prop: 'humanStatus', label: '签约状态', minWidth: '100', sortable: 'custom' }
+        { prop: 'humanIntension', label: '求职意向', minWidth: '100', sortable: 'custom' }
       ]
     }
   },
   created() {
-    // 页面初始化
-    this.init()
+  },
+  watch: {
+    query(old, newVal) {
+      this.filterFormData.humanName = newVal
+      this.filterFormData.humanEmail = newVal
+      this.filterFormData.humanMobile = newVal
+    },
+    $route(to, from) {
+      this.init()
+      this.refreshTable()
+    }
   },
   methods: {
-    init() {
-      // 表格数据初始化
-      this.refreshTable()
-    },
     refreshTable() {
-      this.tableDataLoading = true
+      this.$refs.tableGrid.refreshTable()
     },
     handleSelectionChange(val) {
       this.multipleSelection = val
     },
-    handleParamsChange(messageIsReceived) {
+    handleParamsChange(humanStatus) {
       // 筛选查询
-      this.filterFormData.messageIsReceived = messageIsReceived
+      this.filterFormData.humanStatus = humanStatus
       this.refreshTable()
     },
+    openClickHandler(humanCode) {
+      this.$router.push({
+        path: '/human/signEdit',
+        name: 'signEdit',
+        params: {
+          humanCode: humanCode
+        }
+      })
+    },
     del(row) {
+      // 删除
+      deleteByCode(row.humanCode, this)
     },
     close() {
     }
@@ -168,6 +217,7 @@ export default {
 
 <style rel="stylesheet/scss" lang="scss" scoped>
 @import '~@/styles/smart-ui/smart-ui.scss';
+@import '~@/styles/variables.scss';
 .el-table /deep/ {
   td div {
     white-space: nowrap;

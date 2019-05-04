@@ -73,6 +73,7 @@ export default {
     handsontable: '表格编辑',
     human: '人力资源',
     humanSignin: '应聘人员',
+    humanEdit: '编辑应聘人员信息',
     i18n: '国际化',
     icons: '图标',
     inbox: '收件箱',
