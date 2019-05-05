@@ -27,6 +27,10 @@ $screen-lg-min: 1920px;
   color: nth($blue, 2);
 }
 
+.black {
+  color: nth($black, 1);
+}
+
 .error {
   color: nth($errors, 1);
 }

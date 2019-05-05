@@ -98,7 +98,7 @@
                                  icon="el-icon-edit"
                                  size="mini"
                                  type="primary"
-                                 @click="openClickHandler(scope.row.eventCode)"></el-button>
+                                 @click="openClickHandler(scope.row.humanCode)"></el-button>
                     </el-tooltip>
                     <el-tooltip content="删除"
                                 placement="right">
