@@ -78,6 +78,21 @@
                          height="50">
                   </template>
                 </el-table-column>
+                <el-table-column slot="first-slot"
+                                 label="姓名"
+                                 align="center">
+                  <template slot-scope="scope">
+                    {{scope.row.humanName}}
+                  </template>
+                </el-table-column>
+                <el-table-column slot="first-slot"
+                                 label="性别"
+                                 align="center">
+                  <template slot-scope="scope">
+                    <span v-if="scope.row.humanSexual ===0">男</span>
+                    <span v-if="scope.row.humanSexual ===1">女</span>
+                  </template>
+                </el-table-column>
                 <!--末尾追加操作列-->
                 <el-table-column slot="option-slot"
                                  label="签约状态"
@@ -163,8 +178,6 @@ export default {
       },
       // 表头
       headers: [
-        { prop: 'humanName', label: '用户名', minWidth: '100', sortable: 'custom' },
-        { prop: 'humanSexual', label: '性别', minWidth: '100', sortable: 'custom' },
         { prop: 'humanMobile', label: '手机', minWidth: '100', sortable: 'custom' },
         { prop: 'humanSchool', label: '毕业学校', minWidth: '100', sortable: 'custom' },
         { prop: 'humanIntension', label: '求职意向', minWidth: '100', sortable: 'custom' }

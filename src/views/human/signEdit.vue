@@ -17,15 +17,11 @@
           </div>
         </el-col>
       </el-row>
-      <el-row type="flex" class="row-bg" justify="center">
-        <el-col :span="24">
-          <div class="status">
-            <el-button type="primary" round v-if="formData.humanStatus === 0">待定</el-button>
-            <el-button type="success" round v-if="formData.humanStatus === 1">已签约</el-button>
-            <el-button type="warning" round v-if="formData.humanStatus === 2">不符合</el-button>
-          </div>
-        </el-col>
-      </el-row>
+      <el-radio-group v-model="formData.humanStatus" @change="statusChange">
+        <el-radio-button :label="0">待定</el-radio-button>
+        <el-radio-button :label="1">已签约</el-radio-button>
+        <el-radio-button :label="2">不符合</el-radio-button>
+      </el-radio-group>
     </el-aside>
     <el-main>
       <table class="table">
@@ -210,6 +206,33 @@
           path: '/human/signList'
         })
       },
+      statusChange(val) {
+        const data = {}
+        data.humanCode = this.code
+        data.humanStatus = val
+        this.formData.humanStatus = val
+        update(data)
+          .then(result => {
+            if (result.data.status === 20000) {
+              AlertModule.show({
+                content: '简历状态更新成功'
+              })
+              window.location.reload()
+            } else {
+              AlertModule.show({
+                content: result.data.message
+              })
+            }
+          })
+          .catch((e) => {
+            console.error(e)
+            AlertModule.show({
+              content: '更新失败'
+            })
+          }).finally(() => {
+            this.disable = false
+          })
+      },
       handlerSubmit() {
         if (this.images != null && this.images.length === 1 && isNotEmpty(this.images[0].id)) {
           this.formData.humanAvatar = this.images[0].id
@@ -265,14 +288,12 @@
           document.getElementsByName('humanIntension')[0].focus()
           return
         }
-
-        // 新增
         this.disable = true
         update(this.formData)
           .then(result => {
             if (result.data.status === 20000) {
               AlertModule.show({
-                content: '更新成功'
+                content: '简历更新成功'
               })
               window.location.reload()
             } else {
@@ -305,10 +326,14 @@
       overflow: hidden;
       width: 40%;
       border-right: 1px solid #bbb;
-      padding: 20px 80px 0px 80px;
+      padding: 20px 20px 0px 20px;
       img {
         width: 120px !important;
         height: 120px!important;
+        margin-left: 65px;
+      }
+      .mobile {
+        margin-left: 60px;
       }
       .el-row {
         margin-bottom: 20px;
