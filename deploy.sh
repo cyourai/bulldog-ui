@@ -22,7 +22,7 @@ deploy() {
     ssh root@$1 mv /workspaces/html/bulldog-ui /workspaces/html/bulldog-ui_$current
     echo 清空原有发布项目...
     ssh root@$1 mkdir -p /workspaces/html/bulldog-ui/dist
-    ssh root@39.104.114.151 mkdir -p /workspaces/html/bulldog-ui/dist
+    ssh root@39.97.177.32 mkdir -p /workspaces/html/bulldog-ui/dist
     echo 代码推送bulldog-ui...
     scp -r ./dist root@$1:/workspaces/html/bulldog-ui
     ssh root@$1 nginx -s reopen
@@ -33,8 +33,8 @@ echo "all:全部"
 echo "0:192.168.11.167-内网测试机-1"
 echo "1:192.168.11.168-内网测试机-2"
 echo "2:39.104.87.198-应用阿里测试机-1"
-echo "3:39.104.114.151-应用阿里测试机-2"
-hosts=(192.168.11.167 192.168.11.168 39.104.87.198 39.104.114.151)
+echo "3:39.97.177.32-应用阿里测试机-2"
+hosts=(192.168.11.167 192.168.11.168 39.104.87.198 39.97.177.32)
 read -t 60 -p "（0/1/2/3）:" paramHost
 if [ ! -n "$paramPackage" ] ||  [ "$paramPackage" = "0" ] ;then
     echo ""

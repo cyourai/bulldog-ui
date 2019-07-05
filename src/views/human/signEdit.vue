@@ -213,11 +213,10 @@
         this.formData.humanStatus = val
         update(data)
           .then(result => {
-            if (result.data.status === 20000) {
+            if (result.data.status === 20002) {
               AlertModule.show({
-                content: '简历状态更新成功'
+                content: '应聘人员状态更新成功'
               })
-              window.location.reload()
             } else {
               AlertModule.show({
                 content: result.data.message
