@@ -14,10 +14,20 @@
         <el-row>
           <el-col :span="11"
                   :offset="5">
-            <el-form-item label="用户名"
+            <el-form-item label="用户名(小写拼音)"
                           prop="userName">
               <el-input v-model="formData.userName"
                         placeholder="用户名"></el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="11"
+                  :offset="5">
+            <el-form-item label="中文姓名"
+                          prop="userNickName">
+              <el-input v-model="formData.userNickName"
+                        placeholder="姓名"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
@@ -28,7 +38,14 @@
                           prop="userPassword">
               <el-input v-model="formData.userPassword"
                         type="password"
-                        placeholder="用户密码"></el-input>
+                        v-if="!isEdit()"
+                        placeholder="请输入6~10位密码">
+              </el-input>
+              <el-input v-model="formData.userPassword"
+                        type="password"
+                        v-else
+                        placeholder="不更新密码时，不用填写">
+              </el-input>
             </el-form-item>
           </el-col>
         </el-row>
@@ -75,23 +92,12 @@
         <el-row>
           <el-col :span="11"
                   :offset="5">
-            <el-form-item label="是否有效"
+            <el-form-item label="账号有效"
                           prop="userStatus">
               <el-switch v-model="formData.userStatus"
                          :active-value=1
                          :inactive-value=0>
               </el-switch>
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <el-row>
-          <el-col :span="11"
-                  :offset="5">
-            <el-form-item label="用户ID"
-                          prop="userId">
-              <el-input-number v-model="formData.userId"
-                               :step="10"
-                               controls-position="right"></el-input-number>
             </el-form-item>
           </el-col>
         </el-row>
@@ -165,12 +171,12 @@
               </el-button>
               <el-button type="success"
                          icon="el-icon-tickets"
-                         v-show="!this.isEdit()"
+                         v-show="!isEdit()"
                          @click="submitForm()"> 新 增
               </el-button>
               <el-button type="primary"
                          icon="el-icon-edit"
-                         v-show="this.isEdit()"
+                         v-show="isEdit()"
                          @click="submitForm()"> 更 新
               </el-button>
             </el-form-item>
@@ -218,7 +224,7 @@ export default {
           { required: true, message: '请输入用户名', trigger: 'blur' }
         ],
         userPassword: [
-          { required: true, message: '请输入用户密码', trigger: 'blur' }
+          { required: true, min: 6, max: 10, message: '请输入用户密码', trigger: 'blur' }
         ],
         userEmail: [
           { required: true, message: '请输入用户邮箱', trigger: 'blur' }
@@ -226,7 +232,6 @@ export default {
         userMobile: [
           { required: true, message: '请输入用户手机', trigger: 'blur' }
         ],
-        userId: [{ required: true, message: '请输入用户ID', trigger: 'blur' }],
         roles: [{ required: true, message: '请选择用户权限', trigger: 'blur' }]
       },
       // 富文本规格
@@ -256,6 +261,8 @@ export default {
       // 渲染编辑数据
       if (this.isEdit()) {
         this.loading = true
+        // 编辑模式不必要修改密码
+        delete this.formRules['userPassword']
         getByUserName(this.name)
           .then(result => {
             this.formData = result.data
@@ -296,9 +303,9 @@ export default {
       }
       const fd = new FormData()
       fd.append('file', file)
-      uploadAvatar(fd).then(res => {
-        this.imageUrl = res.data.userAvatar
-        this.formData.userAvatar = this.imageUrl
+      uploadAvatar(fd).then(result => {
+        this.imageUrl = result.data
+        this.formData.userAvatar = result.data
         // console.log(this.formData)
       })
       return true

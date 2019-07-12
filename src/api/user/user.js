@@ -3,14 +3,6 @@ import {
   request
 } from '@/utils'
 
-// export function getUserAll() {
-//   return request({
-//     url: '/user/select',
-//     // url: '/user/component/select/user',
-//     method: 'get'
-//   })
-// }
-
 export function selectByPage(object) {
   object.tableDataLoading = true
   const params = objectMerge({
@@ -140,33 +132,11 @@ export function update(data) {
   })
 }
 
-// export function update(data) {
-//   const SelectRoles = []
-//   for (const i in data.roles) {
-//     SelectRoles.push({ roleKey: data.roles[i].roleKey })
-//   }
-//   console.log(SelectRoles)
-//   data.roles = SelectRoles
-//   return request({
-//     url: '/user',
-//     method: 'put',
-//     params: {
-//       userName: data.userName,
-//       userMobile: data.userMobile,
-//       status: data.status,
-//       roles: SelectRoles,
-//       userId: data.userId,
-//       userAvatar: data.userAvatar,
-//       remark: data.remark
-//     }
-//   })
-// }
-
 // 头像上传
 export function uploadAvatar(data) {
   return request({
     baseURL: process.env.BASE_API + process.env.ZUUL + process.env.PREFIX,
-    url: '/user/front/permit/uploadAvatar',
+    url: '/general/upload/uploadImgToNginx',
     method: 'post',
     data,
     headers: {

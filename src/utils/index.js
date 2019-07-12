@@ -282,3 +282,21 @@ export function isNum(val) {
     return false
   }
 }
+// 返回客户端当前日期 yyyy-mm-dd
+export function getToday() {
+  const now = new Date()
+  let cmonth = now.getMonth() + 1
+  let day = now.getDate()
+  if (cmonth < 10) cmonth = '0' + cmonth
+  if (day < 10) day = '0' + day
+  return now.getFullYear() + '-' + cmonth + '-' + day
+}
+
+export function getTodayTime() {
+  const now = new Date()
+  let hours = now.getHours()
+  let minutes = now.getMinutes()
+  if (hours < 10) hours = '0' + hours
+  if (minutes < 10) minutes = '0' + minutes
+  return getToday() + ' ' + hours + ':' + minutes
+}

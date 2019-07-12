@@ -33,6 +33,7 @@
           <slot name="filterForm"></slot>
           <slot name="refreshTable"></slot>
           <slot name="insert"></slot>
+          <slot name="other"></slot>
         </div>
       </div>
     </el-collapse-transition>

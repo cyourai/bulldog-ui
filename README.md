@@ -156,3 +156,7 @@ npm 新用户，需先注册方能发布组件
 - 中央弹出工具面板控制: ReplaceMenuProvider.js  
 - 中央弹出工具面板内容控制: ReplaceOptions.js  
  
+### 13.前端白名单需修改
+router/index => constantRouterMap
+permission.js 
+ 

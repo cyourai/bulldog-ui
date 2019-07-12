@@ -1,17 +1,14 @@
 /* eslint-disable */
 import Vue from 'vue'
 import Router from 'vue-router'
+/* Layout */
+import Layout from '../views/layout/Layout'
 
 const _import = require('./_import_' + process.env.NODE_ENV)
 // in development-env not use lazy-loading, because lazy-loading too many pages will cause webpack hot update too slow. so only in production use lazy-loading;
 // detail: https://panjiachen.github.io/vue-element-admin-site/#/lazy-loading
 
 Vue.use(Router)
-/* Layout */
-import Layout from '../views/layout/Layout'
-
-import testRouter from './testRouter'
-import onekeyRouter from './onekeyRouter'
 
 /** note: submenu only apppear when children.length>=1
  *   detail see  https://panjiachen.github.io/vue-element-admin-site/#/router-and-nav?id=sidebar
@@ -32,10 +29,10 @@ import onekeyRouter from './onekeyRouter'
   }
  **/
 export const constantRouterMap = [{
-    path: '/login',
-    component: _import('loginPage/index'),
-    hidden: true
-  },
+  path: '/login',
+  component: _import('loginPage/index'),
+  hidden: true
+},
   {
     path: '/register',
     component: _import('loginPage/register'),
@@ -67,25 +64,15 @@ export const constantRouterMap = [{
     hidden: true
   },
   {
-    path: '/onekey-index',
-    component: _import('onekey/onekeyIndex'),
-    hidden: true
-  },
-  {
-    path: '/onekey-start',
-    component: _import('onekey/onekeyStart'),
-    hidden: true
-  },
-  {
     path: '/human',
     component: _import('human/signin'),
     hidden: true
   },
-  // {
-  //   path: '/process/taskId/:taskId',
-  //   component: _import('processManager/processEditEmpty'),
-  //   hidden: true
-  // },
+  {
+    path: '/maintenance',
+    component: _import('maintenance/checkApp'),
+    hidden: true
+  },
   {
     path: '',
     component: Layout,
@@ -131,22 +118,22 @@ export default new Router({
 })
 
 export const asyncRouterMap = [{
-    path: '/permission',
-    component: Layout,
-    redirect: '/permission/index',
+  path: '/permission',
+  component: Layout,
+  redirect: '/permission/index',
+  meta: {
+    roles: ['sysadmin']
+  }, // you can set roles in root nav
+  children: [{
+    path: 'index',
+    component: _import('permission/index'),
+    name: 'permission',
     meta: {
-      roles: ['sysadmin']
-    }, // you can set roles in root nav
-    children: [{
-      path: 'index',
-      component: _import('permission/index'),
-      name: 'permission',
-      meta: {
-        title: 'permission',
-        icon: 'lock'
-      }
-    }]
-  },
+      title: 'permission',
+      icon: 'lock'
+    }
+  }]
+},
   {
     path: '/icon',
     component: Layout,
@@ -175,13 +162,13 @@ export const asyncRouterMap = [{
       roles: ['sysadmin']
     },
     children: [{
-        path: 'tinymce',
-        component: _import('components-demo/tinymce'),
-        name: 'tinymce-demo',
-        meta: {
-          title: 'tinymce'
-        }
-      },
+      path: 'tinymce',
+      component: _import('components-demo/tinymce'),
+      name: 'tinymce-demo',
+      meta: {
+        title: 'tinymce'
+      }
+    },
       {
         path: 'markdown',
         component: _import('components-demo/markdown'),
@@ -275,14 +262,14 @@ export const asyncRouterMap = [{
       roles: ['sysadmin']
     },
     children: [{
-        path: 'keyboard',
-        component: _import('charts/keyboard'),
-        name: 'keyboardChart',
-        meta: {
-          title: 'keyboardChart',
-          noCache: true
-        }
-      },
+      path: 'keyboard',
+      component: _import('charts/keyboard'),
+      name: 'keyboardChart',
+      meta: {
+        title: 'keyboardChart',
+        noCache: true
+      }
+    },
       {
         path: 'line',
         component: _import('charts/line'),
@@ -314,64 +301,64 @@ export const asyncRouterMap = [{
       roles: ['sysadmin']
     },
     children: [{
-        path: '/example/table',
-        component: _import('example/table/index'),
-        redirect: '/example/table/complex-table',
-        name: 'Table',
-        meta: {
-          title: 'Table',
-          icon: 'table'
-        },
-        children: [{
-            path: 'dynamic-table',
-            component: _import('example/table/dynamicTable/index'),
-            name: 'dynamicTable',
-            meta: {
-              title: 'dynamicTable'
-            }
-          },
-          {
-            path: 'drag-table',
-            component: _import('example/table/dragTable'),
-            name: 'dragTable',
-            meta: {
-              title: 'dragTable'
-            }
-          },
-          {
-            path: 'inline-edit-table',
-            component: _import('example/table/inlineEditTable'),
-            name: 'inlineEditTable',
-            meta: {
-              title: 'inlineEditTable'
-            }
-          },
-          {
-            path: 'tree-table',
-            component: _import('example/table/treeTable/treeTable'),
-            name: 'treeTableDemo',
-            meta: {
-              title: 'treeTable'
-            }
-          },
-          {
-            path: 'custom-tree-table',
-            component: _import('example/table/treeTable/customTreeTable'),
-            name: 'customTreeTableDemo',
-            meta: {
-              title: 'customTreeTable'
-            }
-          },
-          {
-            path: 'complex-table',
-            component: _import('example/table/complexTable'),
-            name: 'complexTable',
-            meta: {
-              title: 'complexTable'
-            }
-          }
-        ]
+      path: '/example/table',
+      component: _import('example/table/index'),
+      redirect: '/example/table/complex-table',
+      name: 'Table',
+      meta: {
+        title: 'Table',
+        icon: 'table'
       },
+      children: [{
+        path: 'dynamic-table',
+        component: _import('example/table/dynamicTable/index'),
+        name: 'dynamicTable',
+        meta: {
+          title: 'dynamicTable'
+        }
+      },
+        {
+          path: 'drag-table',
+          component: _import('example/table/dragTable'),
+          name: 'dragTable',
+          meta: {
+            title: 'dragTable'
+          }
+        },
+        {
+          path: 'inline-edit-table',
+          component: _import('example/table/inlineEditTable'),
+          name: 'inlineEditTable',
+          meta: {
+            title: 'inlineEditTable'
+          }
+        },
+        {
+          path: 'tree-table',
+          component: _import('example/table/treeTable/treeTable'),
+          name: 'treeTableDemo',
+          meta: {
+            title: 'treeTable'
+          }
+        },
+        {
+          path: 'custom-tree-table',
+          component: _import('example/table/treeTable/customTreeTable'),
+          name: 'customTreeTableDemo',
+          meta: {
+            title: 'customTreeTable'
+          }
+        },
+        {
+          path: 'complex-table',
+          component: _import('example/table/complexTable'),
+          name: 'complexTable',
+          meta: {
+            title: 'complexTable'
+          }
+        }
+      ]
+    },
       {
         path: 'tab/index',
         icon: 'tab',
@@ -394,14 +381,14 @@ export const asyncRouterMap = [{
       roles: ['sysadmin']
     },
     children: [{
-        path: 'create-form',
-        component: _import('form/create'),
-        name: 'createForm',
-        meta: {
-          title: 'createForm',
-          icon: 'table'
-        }
-      },
+      path: 'create-form',
+      component: _import('form/create'),
+      name: 'createForm',
+      meta: {
+        title: 'createForm',
+        icon: 'table'
+      }
+    },
       {
         path: 'edit-form',
         component: _import('form/edit'),
@@ -424,14 +411,14 @@ export const asyncRouterMap = [{
       roles: ['sysadmin']
     },
     children: [{
-        path: '401',
-        component: _import('errorPage/401'),
-        name: 'page401',
-        meta: {
-          title: 'page401',
-          noCache: true
-        }
-      },
+      path: '401',
+      component: _import('errorPage/401'),
+      name: 'page401',
+      meta: {
+        title: 'page401',
+        noCache: true
+      }
+    },
       {
         path: '404',
         component: _import('errorPage/404'),
@@ -473,13 +460,13 @@ export const asyncRouterMap = [{
       roles: ['sysadmin']
     },
     children: [{
-        path: 'export-excel',
-        component: _import('excel/exportExcel'),
-        name: 'exportExcel',
-        meta: {
-          title: 'exportExcel'
-        }
-      },
+      path: 'export-excel',
+      component: _import('excel/exportExcel'),
+      name: 'exportExcel',
+      meta: {
+        title: 'exportExcel'
+      }
+    },
       {
         path: 'export-selected-excel',
         component: _import('excel/selectExcel'),
@@ -569,353 +556,6 @@ export const asyncRouterMap = [{
       }
     }]
   },
-  /*{
-    path: '/customService',
-    component: Layout,
-    redirect: '/customService/index',
-    meta: {
-      title: 'customService',
-      icon: 'star',
-      roles: ['yqadmin']
-    },
-    children: [{
-      path: 'customService',
-      component: _import('customService/index'),
-      name: 'customService',
-      meta: {
-        title: 'customService'
-      }
-    }]
-  },*/
-  {
-    path: '/customService',
-    component: Layout,
-    redirect: '/customService/index',
-    alwaysShow: true,
-    meta: {
-      title: 'customService',
-      icon: 'message',
-      roles: ['yqadmin']
-      // roles: ['yqadmin', 'admin']
-    },
-    children: [{
-      path: 'index',
-      component: _import('customService/index'),
-      name: 'customService',
-      meta: {
-        title: 'apply'
-      }
-    }]
-  },
-  {
-    path: '/mediaSeller',
-    component: Layout,
-    redirect: '/mediaSeller/index',
-    meta: {
-      title: 'mediaSeller',
-      icon: 'radio',
-      roles: ['yqadmin']
-    },
-    children: [{
-        path: 'mediaSeller/radio',
-        component: _import('mediaSeller/index'),
-        name: 'mediaSellerRadio',
-        meta: {
-          title: 'mediaSellerRadio',
-          mediaSellerType: 'radio'
-        }
-      },
-      {
-        path: 'mediaSeller/tv',
-        component: _import('mediaSeller/index'),
-        name: 'mediaSellerTv',
-        meta: {
-          title: 'mediaSellerTv',
-          mediaSellerType: 'tv'
-        }
-      },
-      {
-        path: 'mediaSeller/video',
-        component: _import('mediaSeller/index'),
-        name: 'mediaSellerVideo',
-        meta: {
-          title: 'mediaSellerVideo',
-          mediaSellerType: 'video'
-        }
-      },
-      {
-        path: 'mediaSeller/web',
-        component: _import('mediaSeller/index'),
-        name: 'mediaSellerWeb',
-        meta: {
-          title: 'mediaSellerWeb',
-          mediaSellerType: 'web'
-        }
-      },
-      {
-        path: 'mediaSeller/wechat',
-        component: _import('mediaSeller/index'),
-        name: 'mediaSellerWechat',
-        meta: {
-          title: 'mediaSellerWechat',
-          mediaSellerType: 'wechat'
-        }
-      },
-      {
-        path: 'mediaSeller/twitter',
-        component: _import('mediaSeller/index'),
-        name: 'mediaSellerTwitter',
-        meta: {
-          title: 'mediaSellerTwitter',
-          mediaSellerType: 'twitter'
-        }
-      },
-      {
-        path: 'mediaSeller/index',
-        component: _import('mediaSeller/index'),
-        name: 'mediaSellerWemedia',
-        meta: {
-          title: 'mediaSellerWemedia',
-          mediaSellerType: 'wemedia'
-        }
-      },
-      {
-        path: 'mediaSeller/paper',
-        component: _import('mediaSeller/index'),
-        name: 'mediaSellerPaper',
-        meta: {
-          title: 'mediaSellerPaper',
-          mediaSellerType: 'paper'
-        }
-      },
-      {
-        path: 'mediaSeller/etc',
-        component: _import('mediaSeller/index'),
-        name: 'mediaSellerEtc',
-        meta: {
-          title: 'mediaSellerEtc',
-          mediaSellerType: 'etc'
-        }
-      },
-      {
-        path: 'mediaSeller-edit',
-        component: _import('mediaSeller/mediaSellerEdit'),
-        name: 'mediaSeller-edit',
-        meta: {
-          title: 'mediaSellerEdit'
-        },
-        hidden: true
-      }
-    ]
-  },
-  {
-    path: '/published',
-    component: Layout,
-    redirect: '/published/published',
-    alwaysShow: false,
-    meta: {
-      title: 'published',
-      icon: 'paper',
-      roles: ['yqadmin']
-    },
-    children: [{
-        path: 'published/radio',
-        component: _import('published/index'),
-        name: 'publishedRadio',
-        meta: {
-          title: 'publishedRadio',
-          mediaSellerType: 'radio'
-        }
-      },
-      {
-        path: 'published/tv',
-        component: _import('published/index'),
-        name: 'publishedTv',
-        meta: {
-          title: 'publishedTv',
-          mediaSellerType: 'tv'
-        }
-      },
-      {
-        path: 'published/video',
-        component: _import('published/index'),
-        name: 'publishedVideo',
-        meta: {
-          title: 'publishedVideo',
-          mediaSellerType: 'video'
-        }
-      },
-      {
-        path: 'published/web',
-        component: _import('published/index'),
-        name: 'publishedWeb',
-        meta: {
-          title: 'publishedWeb',
-          mediaSellerType: 'web'
-        }
-      },
-      {
-        path: 'published/wechat',
-        component: _import('published/index'),
-        name: 'publishedWechat',
-        meta: {
-          title: 'publishedWechat',
-          mediaSellerType: 'wechat'
-        }
-      },
-      {
-        path: 'published/twitter',
-        component: _import('published/index'),
-        name: 'publishedTwitter',
-        meta: {
-          title: 'publishedTwitter',
-          mediaSellerType: 'twitter'
-        }
-      },
-      {
-        path: 'published/index',
-        component: _import('published/index'),
-        name: 'publishedWemedia',
-        meta: {
-          title: 'publishedWemedia',
-          mediaSellerType: 'wemedia'
-        }
-      },
-      {
-        path: 'published/paper',
-        component: _import('published/index'),
-        name: 'publishedPaper',
-        meta: {
-          title: 'publishedPaper',
-          mediaSellerType: 'paper'
-        }
-      },
-      {
-        path: 'published/etc',
-        component: _import('published/index'),
-        name: 'publishedEtc',
-        meta: {
-          title: 'publishedEtc',
-          mediaSellerType: 'etc'
-        }
-      },
-      {
-        path: 'published-edit',
-        component: _import('published/publishedEdit'),
-        name: 'published-edit',
-        meta: {
-          title: 'publishedEdit'
-        },
-        hidden: true
-      },
-      {
-        path: 'published-addtional',
-        component: _import('published/publishedAddtional'),
-        name: 'published-addtional',
-        meta: {
-          title: 'addtional'
-        },
-        hidden: true
-      },
-      {
-        path: 'published-discount',
-        component: _import('published/publishedDiscount'),
-        name: 'published-discount',
-        meta: {
-          title: 'discount'
-        },
-        hidden: true
-      }
-    ]
-  },
-  {
-    path: '/order',
-    component: Layout,
-    redirect: '/order/order',
-    alwaysShow: false,
-    meta: {
-      title: 'orderManager',
-      icon: 'money',
-      roles: ['yqadmin']
-    },
-    children: [{
-        path: 'order',
-        component: _import('order/order'),
-        name: 'order',
-        meta: {
-          title: 'order'
-        }
-      },
-      {
-        path: 'order-schedule',
-        component: _import('order/orderSchedule'),
-        name: 'order-schedule',
-        meta: {
-          title: 'orderSchedule'
-        },
-        hidden: true
-      }
-    ]
-  },
-  {
-    path: '/recommend',
-    component: Layout,
-    redirect: '/recommend/recommend',
-    alwaysShow: false,
-    meta: {
-      title: 'recommend',
-      icon: 'star',
-      // roles: ['yqadmin', 'admin']
-      roles: ['yqadmin']
-    },
-    children: [{
-        path: 'recommend',
-        component: _import('recommend/recommend'),
-        name: 'recommend',
-        meta: {
-          title: 'recommend'
-        }
-      },
-      {
-        path: 'recommend-edit',
-        component: _import('recommend/recommendEdit'),
-        name: 'recommend-edit',
-        meta: {
-          title: 'recommendEdit'
-        },
-        hidden: true
-      }
-    ]
-  },
-  {
-    path: '/flashSale',
-    component: Layout,
-    redirect: '/flashSale/flashSale',
-    alwaysShow: false,
-    meta: {
-      title: 'flashSale',
-      icon: 'clock',
-      roles: ['yqadmin']
-    },
-    children: [{
-        path: 'flashSale',
-        component: _import('flashSale/flashSale'),
-        name: 'flashSale',
-        meta: {
-          title: 'flashSale'
-        }
-      },
-      {
-        path: 'flashSale-edit',
-        component: _import('flashSale/flashSaleEdit'),
-        name: 'flashSale-edit',
-        meta: {
-          title: 'flashSaleEdit'
-        },
-        hidden: true
-      }
-    ]
-  },
   {
     path: '/interactive',
     component: Layout,
@@ -926,10 +566,11 @@ export const asyncRouterMap = [{
       icon: 'zip',
       roles: ['sysadmin']
     },
-    children: [{
-        path: 'common-element',
-        component: _import('interactive/commonElement'),
-        name: 'commonElement',
+    children: [
+      {
+      path: 'common-element',
+      component: _import('interactive/commonElement'),
+      name: 'commonElement',
         meta: {
           title: 'commonElement'
         }
@@ -942,146 +583,7 @@ export const asyncRouterMap = [{
           title: 'formElement'
         }
       }
-      // {
-      //   path: 'common-component',
-      //   component: _import('interactive/commonComponent'),
-      //   name: 'commonComponent',
-      //   meta: {
-      //     title: 'commonComponent'
-      //   }
-      // }
     ]
-  },
-  {
-    path: '/emergency',
-    component: Layout,
-    redirect: '/emergency/plan',
-    meta: {
-      title: 'emergencyResponse',
-      icon: 'plan',
-      roles: ['admin']
-    },
-    children: [{
-        path: 'plan',
-        component: _import('emergency/plan'),
-        name: 'plan',
-        meta: {
-          title: 'plan'
-        }
-      }, {
-        path: 'plan-file-edit',
-        component: _import('emergency/planFileEdit'),
-        name: 'plan-file-edit',
-        meta: {
-          title: 'planFileEdit'
-        },
-        hidden: true
-      }, {
-        path: 'event',
-        component: _import('emergency/event'),
-        name: 'event',
-        meta: {
-          title: 'event'
-        }
-      },
-      {
-        path: 'declare',
-        component: _import('userManager/organization'),
-        name: 'declare',
-        meta: {
-          title: 'declare',
-        }
-      },
-      {
-        path: 'plan-search',
-        component: _import('emergency/planSearch'),
-        name: 'plan-search',
-        meta: {
-          title: 'planSearch',
-          type: 'plan'
-        }
-      }, {
-        path: 'event-approve',
-        component: _import('emergency/approve'),
-        name: 'event-approve',
-        meta: {
-          title: 'eventApprove'
-        }
-      }, {
-        path: 'team',
-        component: _import('emergency/team'),
-        name: 'team',
-        meta: {
-          title: 'communication'
-        }
-      }, {
-        path: 'event-history',
-        component: _import('emergency/approveHistory'),
-        name: 'event-history',
-        meta: {
-          title: 'eventApprove'
-        },
-        hidden: true
-      }, {
-        path: 'event-history',
-        component: _import('emergency/approveHistory'),
-        name: 'event-history',
-        meta: {
-          title: 'eventApprove'
-        },
-        hidden: true
-      }, {
-        path: 'event-edit',
-        component: _import('emergency/eventEdit'),
-        name: 'event-edit',
-        meta: {
-          title: 'eventEdit'
-        },
-        hidden: true
-      }, {
-        path: 'team-edit',
-        component: _import('emergency/teamEdit'),
-        name: 'team-edit',
-        meta: {
-          title: 'teamEdit'
-        },
-        hidden: true
-      }, {
-        path: 'analysis',
-        component: _import('emergency/analysis'),
-        name: 'analysis',
-        meta: {
-          title: 'analysis'
-        }
-      }
-    ]
-  },
-  {
-    path: '/repository',
-    component: Layout,
-    redirect: '/repository/repositoryUpload',
-    alwaysShow: true,
-    meta: {
-      title: 'repository',
-      icon: 'repository',
-      roles: ['admin']
-    },
-    children: [{
-      path: 'repositoryUpload',
-      component: _import('repository/repositoryUpload'),
-      name: 'repositoryUpload',
-      meta: {
-        title: 'repositoryUpload'
-      }
-    }, {
-      path: 'repositorySearch',
-      component: _import('emergency/planSearch'),
-      name: 'repositorySearch',
-      meta: {
-        title: 'repositorySearch',
-        type: 'repository'
-      }
-    }]
   },
   {
     path: '/settings',
@@ -1094,13 +596,13 @@ export const asyncRouterMap = [{
       roles: ['yqadmin', 'admin', 'hradmin']
     },
     children: [{
-        path: 'dict',
-        component: _import('settings/dict'),
-        name: 'dict',
-        meta: {
-          title: 'dict'
-        }
-      },
+      path: 'dict',
+      component: _import('settings/dict'),
+      name: 'dict',
+      meta: {
+        title: 'dict'
+      }
+    },
       {
         path: 'dict-edit',
         component: _import('settings/dictEdit'),
@@ -1229,13 +731,13 @@ export const asyncRouterMap = [{
       roles: ['yqadmin']
     },
     children: [{
-        path: 'approve',
-        component: _import('approve/approve'),
-        name: 'approve',
-        meta: {
-          title: 'approveRegister',
-        }
-      },
+      path: 'approve',
+      component: _import('approve/approve'),
+      name: 'approve',
+      meta: {
+        title: 'approveRegister',
+      }
+    },
       {
         path: 'approveRegisterInfo',
         component: _import('approve/approveRegisterInfo'),
@@ -1276,14 +778,14 @@ export const asyncRouterMap = [{
       roles: ['admin']
     },
     children: [{
-        path: 'process-edit',
-        component: _import('processManager/processEdit'),
-        name: 'process-edit',
-        meta: {
-          title: 'processEdit'
-        },
-        hidden: true
+      path: 'process-edit',
+      component: _import('processManager/processEdit'),
+      name: 'process-edit',
+      meta: {
+        title: 'processEdit'
       },
+      hidden: true
+    },
       {
         path: 'modeler',
         component: _import('processManager/modeler'),
@@ -1414,20 +916,20 @@ export const asyncRouterMap = [{
     path: '/userManager',
     component: Layout,
     redirect: '/userManager/user',
-    alwaysShow: false,
+    alwaysShow: true,
     meta: {
       title: 'userManager',
       icon: 'user',
       roles: ['hradmin', 'admin']
     },
     children: [{
-        path: 'user',
-        component: _import('userManager/user'),
-        name: 'user',
-        meta: {
-          title: 'user'
-        }
-      },
+      path: 'user',
+      component: _import('userManager/user'),
+      name: 'user',
+      meta: {
+        title: 'user'
+      }
+    },
       {
         path: 'user-edit',
         component: _import('userManager/userEdit'),
@@ -1438,20 +940,11 @@ export const asyncRouterMap = [{
         hidden: true
       },
       {
-        path: 'user-audit',
-        component: _import('userManager/userAudit'),
-        name: 'user-audit',
-        meta: {
-          title: 'userAudit'
-        },
-        hidden: true
-      },
-      {
         path: 'role',
         component: _import('userManager/role'),
         name: 'role',
         meta: {
-          title: 'role'
+          title: 'access'
         }
       },
       {
@@ -1460,25 +953,6 @@ export const asyncRouterMap = [{
         name: 'role-edit',
         meta: {
           title: 'roleEdit'
-        },
-        hidden: true
-      },
-      {
-        path: 'emergency',
-        component: _import('userManager/emergency'),
-        name: 'emergency',
-        meta: {
-          title: 'emergency',
-          roles: ['admin']
-        }
-      },
-      {
-        path: 'emergency-edit',
-        component: _import('userManager/emergencyEdit'),
-        name: 'emergency-edit',
-        meta: {
-          title: 'emergencyEdit',
-          roles: ['admin']
         },
         hidden: true
       },
@@ -1498,7 +972,8 @@ export const asyncRouterMap = [{
         meta: {
           title: 'access',
           roles: ['admin']
-        }
+        },
+        hidden: true
       },
       {
         path: 'access-edit',
@@ -1535,7 +1010,8 @@ export const asyncRouterMap = [{
       meta: {
         title: 'humanEdit'
       },
-      hidden: true}]
+      hidden: true
+    }]
   },
   {
     path: '/jobsManager',
@@ -1565,13 +1041,13 @@ export const asyncRouterMap = [{
       icon: 'email'
     },
     children: [{
-        path: 'inbox',
-        component: _import('mail/inbox'),
-        name: 'inbox',
-        meta: {
-          title: 'inbox'
-        }
-      },
+      path: 'inbox',
+      component: _import('mail/inbox'),
+      name: 'inbox',
+      meta: {
+        title: 'inbox'
+      }
+    },
       {
         path: 'outbox',
         component: _import('mail/outbox'),
@@ -1582,7 +1058,6 @@ export const asyncRouterMap = [{
       }
     ]
   },
-
   {
     path: '/script',
     component: Layout,
@@ -1594,13 +1069,13 @@ export const asyncRouterMap = [{
       roles: ['admin']
     },
     children: [{
-        path: 'scriptList',
-        component: _import('script/scriptList'),
-        name: 'scriptList',
-        meta: {
-          title: 'scriptList'
-        }
-      },
+      path: 'scriptList',
+      component: _import('script/scriptList'),
+      name: 'scriptList',
+      meta: {
+        title: 'scriptList'
+      }
+    },
       {
         path: 'scriptEdit',
         component: _import('script/scriptEdit'),
@@ -1649,68 +1124,25 @@ export const asyncRouterMap = [{
     ]
   },
   {
-    path: '/operationsManagement',
+    path: '/maintenance',
     component: Layout,
-    redirect: '/operationsManagement/rapidDeploy',
+    redirect: '/maintenance/checkApp',
     alwaysShow: true,
     meta: {
       title: 'operationsManagement',
-      icon: 'operationsManagement',
+      icon: 'check',
       roles: ['admin']
     },
-    children: [{
-        path: 'reportCharts',
-        component: _import('operationsManagement/reportCharts'),
-        name: 'reportCharts',
-        meta: {
-          title: 'reportCharts'
-        }
-      },
+    children: [
       {
-        path: 'rapid-deploy',
-        component: _import('operationsManagement/rapidDeploy'),
-        name: 'rapid-deploy',
+        path: 'checkApp',
+        component: _import('maintenance/checkApp'),
+        name: 'checkApp',
         meta: {
-          title: 'rapidDeploy'
-        }
-      },
-      {
-        path: 'rapid-edit',
-        component: _import('operationsManagement/rapidEdit'),
-        name: 'rapid-edit',
-        meta: {
-          title: 'rapid-edit'
-        },
-        hidden: true
-      },
-      {
-        path: 'serverFind',
-        component: _import('operationsManagement/serverFind'),
-        name: 'serverFind',
-        meta: {
-          title: 'serverFind'
+          title: 'checkApp'
         }
       }
     ]
-  },
-  {
-    path: '/view',
-    component: Layout,
-    redirect: '/view/viewPlan',
-    alwaysShow: true,
-    meta: {
-      title: 'view',
-      icon: 'eye',
-      roles: ['admin']
-    },
-    children: [{
-      path: 'viewPlan',
-      component: _import('view/viewPlan'),
-      name: 'viewPlan',
-      meta: {
-        title: 'viewPlan'
-      }
-    }]
   },
   {
     path: '/assets',
@@ -1722,14 +1154,14 @@ export const asyncRouterMap = [{
       roles: ['admin']
     },
     children: [{
-        path: 'server',
-        component: _import('assets/server'),
-        name: 'server',
-        meta: {
-          title: 'server',
-          roles: ['admin']
-        }
-      },
+      path: 'server',
+      component: _import('assets/server'),
+      name: 'server',
+      meta: {
+        title: 'server',
+        roles: ['admin']
+      }
+    },
       {
         path: 'serverEdit',
         component: _import('assets/serverEdit'),
@@ -1752,14 +1184,14 @@ export const asyncRouterMap = [{
       roles: ['admin']
     },
     children: [{
-        path: 'photoGallery',
-        component: _import('gallery/photoGallery'),
-        name: 'PhotoGallery',
-        meta: {
-          title: 'photoGallery',
-          roles: ['admin', 'yqadmin']
-        }
-      },
+      path: 'photoGallery',
+      component: _import('gallery/photoGallery'),
+      name: 'PhotoGallery',
+      meta: {
+        title: 'photoGallery',
+        roles: ['admin', 'yqadmin']
+      }
+    },
       {
         path: 'scriptGallery',
         component: _import('gallery/scriptGallery'),
@@ -1788,12 +1220,5 @@ export const asyncRouterMap = [{
         icon: 'example'
       }
     }]
-  },
-  // onekeyRouter,
-  testRouter,
-  {
-    path: '*',
-    redirect: '/404',
-    hidden: true
   }
 ]

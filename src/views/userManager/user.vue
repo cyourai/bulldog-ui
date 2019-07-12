@@ -9,7 +9,7 @@
         <div class="content-spe-element">
 
           <!-- 表格筛选 -->
-          <ComponentFilter>
+          <component-filter>
             <el-form slot="filterForm"
                      :model="filterFormData"
                      ref="filterFormData"
@@ -43,6 +43,14 @@
                        plain
                        @click="refreshTable">查询
             </el-button>
+            <el-dropdown slot="insert">
+              <el-button type="primary">
+                更多菜单<i class="el-icon-arrow-down el-icon--right"></i>
+              </el-button>
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item @click="exportExcel">导出Excel</el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
             <el-button slot="insert"
                        class="buttonNewTableData"
                        icon="el-icon-plus"
@@ -51,7 +59,7 @@
                        plain
                        @click="insert">新增
             </el-button>
-          </ComponentFilter>
+          </component-filter>
 
           <!-- 表格内容 -->
           <div class="table-content">
@@ -78,6 +86,16 @@
                                  type="selection"
                                  align="center">
                 </el-table-column>
+                <el-table-column width="80"
+                                 label="头像"
+                                 align="center">
+                  <template slot-scope="scope">
+                    <img v-if="scope.row.userAvatar!=='' && scope.row.userAvatar!==undefined"
+                         :src="scope.row.userAvatar"
+                         width="50"
+                         height="50">
+                  </template>
+                </el-table-column>
                 <el-table-column label="用户名"
                                  align="center"
                                  prop="userName"
@@ -89,27 +107,18 @@
                                  sortable="custom">
                 </el-table-column>
                 <el-table-column label="手机"
-                                 align="center"
+                                 align="left"
                                  prop="userMobile"
                                  sortable="custom">
                 </el-table-column>
                 <el-table-column label="邮箱"
-                                 align="center"
+                                 width="200"
+                                 align="left"
                                  prop="userEmail"
                                  sortable="custom">
                 </el-table-column>
-                <el-table-column label="微信号"
-                                 align="center"
-                                 prop="userWechat"
-                                 sortable="custom">
-                </el-table-column>
-                <el-table-column label="QQ号码"
-                                 align="center"
-                                 prop="userQq"
-                                 sortable="custom">
-                </el-table-column>
                 <el-table-column width="100"
-                                 label="用户状态（有效用户/黑名单）"
+                                 label="用户状态"
                                  align="center">
                   <template slot-scope="scope">
                     <el-switch v-model="scope.row.userStatus"
@@ -121,27 +130,17 @@
                 </el-table-column>
                 <el-table-column min-width="150"
                                  label="权限"
-                                 align="center">
+                                 align="left">
                   <template slot-scope="scope">
                     <el-tag v-for="item in scope.row.roles"
                             :key="item.value"
                             size="medium">{{item.roleName}}</el-tag>
                   </template>
                 </el-table-column>
-                <el-table-column width="80"
-                                 label="头像"
-                                 align="center">
-                  <template slot-scope="scope">
-                    <img v-if="scope.row.userAvatar!=='' && scope.row.userAvatar!==undefined"
-                         :src="scope.row.userAvatar"
-                         width="50"
-                         height="50">
-                  </template>
-                </el-table-column>
                 <el-table-column min-width="120"
                                  label="操作"
                                  fixed="right"
-                                 align="center">
+                                 align="left">
                   <template slot-scope="scope">
                     <el-tooltip content="编辑"
                                 placement="left">
@@ -150,14 +149,6 @@
                                  size="mini"
                                  type="primary"
                                  @click="edit(scope.row)"></el-button>
-                    </el-tooltip>
-                    <el-tooltip content="查看相关资质"
-                                placement="bottom">
-                      <el-button plain
-                                 icon="el-icon-search"
-                                 size="mini"
-                                 type="success"
-                                 @click="audit(scope.row)"></el-button>
                     </el-tooltip>
                     <el-tooltip content="删除"
                                 placement="right">
@@ -207,7 +198,6 @@
 <script>
 import ComponentSelect from '@/components/ComponentSelect'
 import ComponentFilter from '@/components/ComponentFilter'
-import { select } from '@/api/components/component'
 import {
   selectByPage,
   deleteByCode,
@@ -253,10 +243,6 @@ export default {
   },
   methods: {
     init() {
-      // 下拉列表选项
-      select('enable', '', true).then(result => {
-        this.statusOptions = result.data.options
-      })
       // 表格数据初始化
       this.refreshTable()
     },
@@ -264,12 +250,15 @@ export default {
       selectByPage(this)
         .then(result => {
           this.tableData = result.data.tableData
-          // console.log(this.tableData)
           this.tableDataLoading = false
         })
         .catch(() => {
           this.tableDataLoading = false
         })
+    },
+    exportExcel() {
+      // 导出Excel
+      window.open(this.baseURL + '/user/front/permit/exportExcel', '_self')
     },
     handleSizeChange(pageSize) {
       // 分页-改变页显示数
