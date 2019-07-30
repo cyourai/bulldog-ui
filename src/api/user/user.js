@@ -169,3 +169,11 @@ export function selectAllUserCount() {
     method: 'get'
   })
 }
+
+// 根据组织节点查询分组用户
+export function selectUserListByOrgName(orgName) {
+  return request({
+    url: `/user/selectUserListByOrgName/${orgName}/`,
+    method: 'get'
+  })
+}

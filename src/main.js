@@ -7,6 +7,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import '@/assets/fontIcon/iconfont.css' // fontIcon
 
 import '@/styles/index.scss' // global css
+import '@/styles/weui.css'
 
 import VueClipboard from 'vue-clipboard2'
 import App from './App'
@@ -19,7 +20,20 @@ import './errorLog' // error log
 import './permission' // permission control
 import './mock' // simulation data
 
+import VConsole from 'vconsole'
+if (process.env.ENV_CONFIG === 'dev' || process.env.ENV_CONFIG === 'test') new VConsole()
+
 import * as filters from './filters' // global filters
+
+import {
+  Toast,
+  ToastPlugin,
+  LoadingPlugin
+} from 'vux'
+
+Vue.use(Toast)
+Vue.use(ToastPlugin)
+Vue.use(LoadingPlugin)
 
 // V-charts
 import VCharts from 'v-charts'

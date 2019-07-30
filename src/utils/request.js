@@ -24,7 +24,8 @@ const service = axios.create({
 // request interceptor
 service.interceptors.request.use(
   config => {
-    // Do something before request is sent
+    // 默认response自动显示Notify回文消息
+    config.isShowMsg = config.params != null && config.params.isShowMsg != null ? config.params.isShowMsg : true
     if (getToken()) {
       // 让每个请求携带token-- ['X-Token']为自定义key 请根据实际情况自行修改
       config.headers['token-header'] = getToken()
@@ -35,6 +36,9 @@ service.interceptors.request.use(
     // Do something with request error
     // console.log(error) // for debug
     Promise.reject(error)
+  },
+  param => {
+    console.debug(param)
   }
 )
 
@@ -49,8 +53,7 @@ service.interceptors.response.use(
   response => {
     // response.status === 200 -> 服务器连接成功
     // console.debug(response)
-    let isShowMsg = true
-    if (response.config.isShowMsg != null && response.config.isShowMsg === false) isShowMsg = false
+    const isShowMsg = response.config.isShowMsg
     if (response.status === 200) {
       // 200开头 -> 数据获取成功
       if (response.config.message && response.config.message !== '' && response.data.status &&

@@ -243,7 +243,6 @@ export default {
   watch: {
     $route(to, from) {
       this.init()
-      alert()
     }
   },
   created() {

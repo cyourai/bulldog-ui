@@ -186,7 +186,7 @@ export default {
           }
         })
         .catch((e) => {
-          console.error(e)
+          // console.error(e)
           AlertModule.show({
             content: '投递失败'
           })

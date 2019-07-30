@@ -4,8 +4,9 @@ import {
 
 export function insert(data) {
   return request({
-    isShowMsg: false,
-    message: '',
+    params: {
+      isShowMsg: false
+    },
     url: '/human/insert',
     method: 'post',
     data

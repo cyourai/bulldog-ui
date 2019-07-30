@@ -152,106 +152,6 @@ export const asyncRouterMap = [{
     }]
   },
   {
-    path: '/components',
-    component: Layout,
-    redirect: 'noredirect',
-    name: 'component-demo',
-    meta: {
-      title: 'components',
-      icon: 'component',
-      roles: ['sysadmin']
-    },
-    children: [{
-      path: 'tinymce',
-      component: _import('components-demo/tinymce'),
-      name: 'tinymce-demo',
-      meta: {
-        title: 'tinymce'
-      }
-    },
-      {
-        path: 'markdown',
-        component: _import('components-demo/markdown'),
-        name: 'markdown-demo',
-        meta: {
-          title: 'markdown'
-        }
-      },
-      {
-        path: 'json-editor',
-        component: _import('components-demo/jsonEditor'),
-        name: 'jsonEditor-demo',
-        meta: {
-          title: 'jsonEditor'
-        }
-      },
-      {
-        path: 'dnd-list',
-        component: _import('components-demo/dndList'),
-        name: 'dndList-demo',
-        meta: {
-          title: 'dndList'
-        }
-      },
-      {
-        path: 'splitpane',
-        component: _import('components-demo/splitpane'),
-        name: 'splitpane-demo',
-        meta: {
-          title: 'splitPane'
-        }
-      },
-      {
-        path: 'avatar-upload',
-        component: _import('components-demo/avatarUpload'),
-        name: 'avatarUpload-demo',
-        meta: {
-          title: 'avatarUpload'
-        }
-      },
-      {
-        path: 'dropzone',
-        component: _import('components-demo/dropzone'),
-        name: 'dropzone-demo',
-        meta: {
-          title: 'dropzone'
-        }
-      },
-      {
-        path: 'sticky',
-        component: _import('components-demo/sticky'),
-        name: 'sticky-demo',
-        meta: {
-          title: 'sticky'
-        }
-      },
-      {
-        path: 'count-to',
-        component: _import('components-demo/countTo'),
-        name: 'countTo-demo',
-        meta: {
-          title: 'countTo'
-        }
-      },
-      {
-        path: 'mixin',
-        component: _import('components-demo/mixin'),
-        name: 'componentMixin-demo',
-        meta: {
-          title: 'componentMixin'
-        }
-      },
-      {
-        path: 'back-to-top',
-        component: _import('components-demo/backToTop'),
-        name: 'backToTop-demo',
-        meta: {
-          title: 'backToTop'
-        }
-      }
-    ]
-  },
-  {
     path: '/charts',
     component: Layout,
     redirect: 'noredirect',
@@ -366,36 +266,6 @@ export const asyncRouterMap = [{
         name: 'tab',
         meta: {
           title: 'tab'
-        }
-      }
-    ]
-  },
-  {
-    path: '/form',
-    component: Layout,
-    redirect: 'noredirect',
-    name: 'form',
-    meta: {
-      title: 'form',
-      icon: 'form',
-      roles: ['sysadmin']
-    },
-    children: [{
-      path: 'create-form',
-      component: _import('form/create'),
-      name: 'createForm',
-      meta: {
-        title: 'createForm',
-        icon: 'table'
-      }
-    },
-      {
-        path: 'edit-form',
-        component: _import('form/edit'),
-        name: 'editForm',
-        meta: {
-          title: 'editForm',
-          icon: 'table'
         }
       }
     ]
@@ -630,15 +500,6 @@ export const asyncRouterMap = [{
         }
       },
       {
-        path: 'menuEdit',
-        component: _import('settings/menuEdit'),
-        name: 'menuEdit',
-        meta: {
-          title: 'menuEdit',
-          roles: ['admin']
-        }
-      },
-      {
         path: 'config',
         component: _import('settings/config'),
         name: 'config',
@@ -705,212 +566,6 @@ export const asyncRouterMap = [{
         }
       },
     ]
-  },
-  {
-    path: '/approveHistory',
-    component: Layout,
-    redirect: '/approve/history/approveHistory',
-    meta: {},
-    hidden: true,
-    children: [{
-      path: '/approve/history/approveHistory',
-      component: _import('approve/history/approveHistory'),
-      name: 'approveHistory',
-      meta: {
-        title: 'approveHistory',
-      }
-    }]
-  },
-  {
-    path: '/approve',
-    component: Layout,
-    redirect: '/approve/approve',
-    meta: {
-      title: 'approve',
-      icon: 'edit',
-      roles: ['yqadmin']
-    },
-    children: [{
-      path: 'approve',
-      component: _import('approve/approve'),
-      name: 'approve',
-      meta: {
-        title: 'approveRegister',
-      }
-    },
-      {
-        path: 'approveRegisterInfo',
-        component: _import('approve/approveRegisterInfo'),
-        name: 'approveRegisterInfo',
-        meta: {
-          title: 'approveRegisterInfo',
-          noCache: true
-        },
-        hidden: true
-      },
-      {
-        path: 'history/approveRegisterHistory',
-        component: _import('approve/history/approveRegisterHistory'),
-        name: 'approveRegisterHistory',
-        meta: {
-          title: 'approveRegisterHistory',
-        }
-      },
-      {
-        path: 'history/approveRegisterHistoryInfo',
-        component: _import('approve/history/approveRegisterHistoryInfo'),
-        name: 'approveRegisterHistoryInfo',
-        meta: {
-          title: 'approveRegisterHistoryInfo',
-        },
-        hidden: true
-      }
-    ]
-  },
-  {
-    path: '/processManager',
-    component: Layout,
-    redirect: '/processManager/processList',
-    alwaysShow: false,
-    meta: {
-      title: 'processManager',
-      icon: 'process',
-      roles: ['admin']
-    },
-    children: [{
-      path: 'process-edit',
-      component: _import('processManager/processEdit'),
-      name: 'process-edit',
-      meta: {
-        title: 'processEdit'
-      },
-      hidden: true
-    },
-      {
-        path: 'modeler',
-        component: _import('processManager/modeler'),
-        name: 'modeler',
-        meta: {
-          title: 'processEdit'
-        },
-        hidden: true
-      },
-      {
-        path: 'process-deploy',
-        component: _import('processManager/processDeploy'),
-        name: 'process-deploy',
-        meta: {
-          title: 'processDesign'
-        }
-      },
-      {
-        path: 'drill-simulation',
-        component: _import('processManager/drill'),
-        name: 'drill-simulation',
-        meta: {
-          title: 'drillSimulation',
-          type: 'simulation'
-        }
-      },
-      {
-        path: 'drill-real',
-        component: _import('processManager/drill'),
-        name: 'drill-real',
-        meta: {
-          title: 'drillReal',
-          type: 'real'
-        }
-      },
-      {
-        path: 'sign-in/:imgSignUrl/:id',
-        component: _import('processManager/signIn'),
-        name: 'sign-in',
-        meta: {
-          title: 'signIn'
-        },
-        hidden: true
-      },
-      {
-        path: 'task',
-        component: _import('processManager/task'),
-        name: 'task',
-        meta: {
-          title: 'allTask',
-          type: 'all'
-        }
-      },
-      {
-        path: 'my-task',
-        component: _import('processManager/task'),
-        name: 'my-task',
-        meta: {
-          title: 'myTask',
-          type: 'my'
-        }
-      },
-      {
-        path: 'execute',
-        component: _import('processManager/execute'),
-        name: 'execute',
-        meta: {
-          title: 'execute',
-        },
-        hidden: true
-      },
-      {
-        path: 'result-list',
-        component: _import('processManager/resultList'),
-        name: 'result-list',
-        meta: {
-          title: 'resultList',
-        }
-      },
-      {
-        path: 'result-chart',
-        component: _import('processManager/resultChart'),
-        name: 'result-chart',
-        meta: {
-          title: 'resultChart',
-        },
-        hidden: true
-      },
-      {
-        path: 'validate',
-        component: _import('processManager/validate'),
-        name: 'validate',
-        meta: {
-          title: 'validate',
-        }
-      },
-      {
-        path: 'validate-edit',
-        component: _import('processManager/validateEdit'),
-        name: 'validate-edit',
-        meta: {
-          title: 'validateEdit',
-        },
-        hidden: true
-      },
-      {
-        path: 'process-modeler',
-        component: _import('processManager/processModeler'),
-        name: 'process-modeler',
-        meta: {
-          title: 'processModeler',
-        },
-        hidden: true
-      }
-    ]
-  },
-  {
-    path: '/process/modelId/:modelId',
-    component: Layout,
-    redirect: '/process/modelId/:modelId',
-    hidden: true,
-    children: [{
-      path: '/',
-      component: _import('processManager/index'),
-    }]
   },
   {
     path: '/userManager',
@@ -1014,25 +669,6 @@ export const asyncRouterMap = [{
     }]
   },
   {
-    path: '/jobsManager',
-    component: Layout,
-    redirect: '/jobsManager/jobs',
-    alwaysShow: true,
-    meta: {
-      title: 'jobsManager',
-      icon: 'form',
-      roles: ['admin']
-    },
-    children: [{
-      path: 'jobs',
-      component: _import('jobsManager/jobs'),
-      name: 'jobs',
-      meta: {
-        title: 'jobs'
-      }
-    }]
-  },
-  {
     path: '/mail',
     component: Layout,
     redirect: '/mail/inbox',
@@ -1126,7 +762,7 @@ export const asyncRouterMap = [{
   {
     path: '/maintenance',
     component: Layout,
-    redirect: '/maintenance/checkApp',
+    redirect: '/maintenance/checkAppList',
     alwaysShow: true,
     meta: {
       title: 'operationsManagement',
@@ -1140,37 +776,26 @@ export const asyncRouterMap = [{
         name: 'checkApp',
         meta: {
           title: 'checkApp'
-        }
-      }
-    ]
-  },
-  {
-    path: '/assets',
-    component: Layout,
-    redirect: '/assets/server',
-    meta: {
-      title: 'assets',
-      icon: 'discount',
-      roles: ['admin']
-    },
-    children: [{
-      path: 'server',
-      component: _import('assets/server'),
-      name: 'server',
-      meta: {
-        title: 'server',
-        roles: ['admin']
-      }
-    },
-      {
-        path: 'serverEdit',
-        component: _import('assets/serverEdit'),
-        name: 'serverEdit',
-        meta: {
-          title: 'serverEdit'
         },
         hidden: true
-      }
+      },
+      {
+        path: 'checkAppList',
+        component: _import('maintenance/checkAppList'),
+        name: 'checkApp',
+        meta: {
+          title: 'checkApp'
+        }
+      },
+      {
+        path: 'checkAppEdit',
+        component: _import('maintenance/checkAppEdit'),
+        name: 'checkAppEdit',
+        meta: {
+          title: 'checkAppEdit'
+        },
+        hidden: true
+      },
     ]
   },
   {

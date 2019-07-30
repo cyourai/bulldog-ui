@@ -7,7 +7,7 @@
   <div class="content">
     <!-- 用户编辑 -->
     <div class="content-spe">
-      <p class="content-spe-title">{{name}}编辑</p>
+      <p class="content-spe-title">{{name}}</p>
       <div class="content-spe-element">
         <!-- 表单 -->
         <div class="form-filter">
@@ -16,11 +16,11 @@
           <div class="form-filter-header">
             <div v-if="this.isEdit">
               <svg-icon icon-class="edit" />
-              <span>编辑{{name}}</span>
+              <span>{{name}}</span>
             </div>
             <div v-else>
               <svg-icon icon-class="add" />
-              <span>新增{{name}}</span>
+              <span>{{name}}</span>
               <div class="table-filter-header-search">
                 <el-button size="mini"
                            icon="double_arrow_up"

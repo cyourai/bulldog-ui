@@ -91,8 +91,8 @@ export default {
     myTask: '我的任务',
     operationsManagement: '运维管理',
     checkApp: '应用巡检',
-    order: '订单',
-    orderManager: '订单管理',
+    checkAppList: '应用巡检列表',
+    checkAppEdit: '应用巡检单编辑',
     orderSchedule: '生成排期单',
     organization: '应急分组',
     outbox: '发件箱',
@@ -200,7 +200,8 @@ export default {
     signList: '应聘人员列表'
   },
   maintenance: {
-    checkApp: '应用巡检'
+    checkApp: '应用巡检',
+    checkAppList: '应用巡检列表'
   },
   navbar: {
     logOut: '退出登录',

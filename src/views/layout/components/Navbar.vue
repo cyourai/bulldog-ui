@@ -37,14 +37,16 @@
       </el-tooltip>
 
       <!-- 中英切换 -->
-      <lang-select class="international right-menu-item"></lang-select>
+      <!--
+      <lang-select class="international right-menu-item"></lang-select>-->
 
       <!-- 主题色切换 -->
-      <el-tooltip effect="dark"
+      <!--
+     <el-tooltip effect="dark"
                   :content="$t('navbar.theme')"
                   placement="bottom">
         <theme-picker class="theme-switch right-menu-item"></theme-picker>
-      </el-tooltip>
+      </el-tooltip>-->
 
       <!-- 用户信息 -->
       <el-dropdown class="avatar-container right-menu-item"

@@ -1,11 +1,10 @@
-/**
- * Created by cyourai
- */
 export * from './params'
 export * from './log'
 export * from './request'
 export * from './string'
 export * from './close'
+export * from './utils'
+
 export function parseTime(time, cFormat) {
   if (arguments.length === 0) {
     return null
@@ -300,3 +299,4 @@ export function getTodayTime() {
   if (minutes < 10) minutes = '0' + minutes
   return getToday() + ' ' + hours + ':' + minutes
 }
+
