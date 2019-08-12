@@ -69,8 +69,18 @@ export const constantRouterMap = [{
     hidden: true
   },
   {
-    path: '/maintenance',
+    path: '/checkApp',
     component: _import('maintenance/checkApp'),
+    hidden: true
+  },
+  {
+    path: '/checkAppPicture/:checkAppCode',
+    component: _import('maintenance/checkAppPicture'),
+    hidden: true
+  },
+  {
+    path: '/checkAppEdit/:checkAppCode/:info',
+    component: _import('maintenance/checkAppEdit'),
     hidden: true
   },
   {
@@ -526,7 +536,7 @@ export const asyncRouterMap = [{
           title: 'templateMail',
           type: 'mail',
           roles: ['admin']
-        }
+        },
       },
       {
         path: 'template-edit',
@@ -771,15 +781,6 @@ export const asyncRouterMap = [{
     },
     children: [
       {
-        path: 'checkApp',
-        component: _import('maintenance/checkApp'),
-        name: 'checkApp',
-        meta: {
-          title: 'checkApp'
-        },
-        hidden: true
-      },
-      {
         path: 'checkAppList',
         component: _import('maintenance/checkAppList'),
         name: 'checkApp',
@@ -796,6 +797,15 @@ export const asyncRouterMap = [{
         },
         hidden: true
       },
+      {
+        path: 'checkAppPicture',
+        component: _import('maintenance/checkAppPicture'),
+        name: 'checkAppPicture',
+        meta: {
+          title: 'checkAppEdit'
+        },
+        hidden: true
+      }
     ]
   },
   {

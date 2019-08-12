@@ -75,10 +75,9 @@
                                  width="250"
                                  align="center">
                   <template slot-scope="scope">
-                    <img v-if="scope.row.checkAppEvidence!=='' && scope.row.checkAppEvidence!==undefined"
-                         :src="scope.row.checkAppEvidence"
-                         width="50"
-                         height="50">
+                    <pic-magnify :pic-url="scope.row.checkAppEvidence1"></pic-magnify>
+                    <pic-magnify :pic-url="scope.row.checkAppEvidence2"></pic-magnify>
+                    <pic-magnify :pic-url="scope.row.checkAppEvidence3"></pic-magnify>
                   </template>
                 </el-table-column>
 
@@ -120,7 +119,7 @@
   import ComponentSelect from '@/components/ComponentSelect'
   import { TableGrid, PicMagnify } from 'cyourai-vue-dialog'
   import { deleteByCode } from '@/api/human'
-  import { createQrcode } from '@/utils'
+  import { createQrcode, clearParam } from '@/utils'
 
   export default {
     name: 'checkAppList',
@@ -159,7 +158,7 @@
         // 表头
         headers: [
           { prop: 'user.userNickName', label: '巡检人', minWidth: '60', sortable: 'custom' },
-          { prop: 'checkAppTime', label: '巡检时间', minWidth: '100', sortable: 'custom' }
+          { prop: 'checkAppTime', label: '巡检时间', minWidth: '80', sortable: 'custom' }
         ]
       }
     },
@@ -179,19 +178,21 @@
         this.$refs.tableGrid.refreshTable()
       },
       openClickHandler(checkAppCode) {
+        clearParam('checkAppCode')
+        clearParam('info')
         this.$router.push({
           path: '/maintenance/checkAppEdit',
           name: 'checkAppEdit',
           params: {
-            checkAppCode: checkAppCode
+            checkAppCode: checkAppCode,
+            info: 0
           }
         })
       },
       createQrcodeHandler() {
         createQrcode({
-          url: 'http://{0}/#/maintenance'
+          url: `${document.location.protocol}://{0}/#/checkApp`
         }).then(result => {
-          console.debug(result)
           this.$alert('<img style="width: 100%;" src=' + result.data + '>', '应用巡检二维码', {
             dangerouslyUseHTMLString: true
           })
@@ -211,6 +212,9 @@
   @import '~@/styles/smart-ui/smart-ui.scss';
   @import '~@/styles/variables.scss';
   .check-app-container /deep/ {
-
+    .cell {
+      img {
+      }
+    }
   }
 </style>

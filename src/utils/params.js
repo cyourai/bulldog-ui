@@ -1,5 +1,6 @@
 export function params(_this, key) {
   if (_this.$route.params[key]) {
+    localStorage.removeItem(key)
     localStorage.setItem(key, _this.$route.params[key])
     const pageParam = _this.$route.params[key]
     return pageParam

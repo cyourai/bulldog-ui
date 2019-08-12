@@ -83,7 +83,7 @@
                          :data="{index: 1}"
                          accept=".jpg,.png,.bmp,jpge">
                 <img v-if="formData.checkAppEvidence1 && formData.checkAppEvidence1!=='' || imageUrl1!==''"
-                     :src="imageUrl1"
+                     :src="formData.checkAppEvidence1"
                      class="avatar">
                 <i v-else
                    class="el-icon-plus avatar-uploader-icon"></i>
@@ -97,7 +97,7 @@
                          :data="{index: 2}"
                          accept=".jpg,.png,.bmp,jpge">
                 <img v-if="formData.checkAppEvidence2 && formData.checkAppEvidence2!=='' || imageUrl2!==''"
-                     :src="imageUrl2"
+                     :src="formData.checkAppEvidence2"
                      class="avatar">
                 <i v-else
                    class="el-icon-plus avatar-uploader-icon"></i>
@@ -111,7 +111,7 @@
                          :data="{index: 3}"
                          accept=".jpg,.png,.bmp,jpge">
                 <img v-if="formData.checkAppEvidence3 && formData.checkAppEvidence3!=='' || imageUrl3!==''"
-                     :src="imageUrl3"
+                     :src="formData.checkAppEvidence3"
                      class="avatar">
                 <i v-else
                    class="el-icon-plus avatar-uploader-icon"></i>
@@ -126,15 +126,15 @@
                           prop="remark">
               <div>
                 <!-- 富文本 & 图片库 -->
-                <tinymce-gallery id="userTiny"
-                                 v-model="formData.checkAppRemark"
+                <tinymce-gallery :id="'userTiny'"
+                                 :value="formData.checkAppRemark"
                                  type="PhotoGallery"
                                  @keyup="remarkKeyupHandler" />
               </div>
             </el-form-item>
           </el-col>
         </el-row>
-        <el-row>
+        <el-row v-if="info !== 1">
           <el-col :span="10"
                   :offset="5"
                   class="form-submit">
@@ -168,7 +168,6 @@
   import { TinymceGallery } from 'cyourai-vue-dialog'
 
   export default {
-    name: 'checkAppEdit',
     components: {
       ComponentForm, TinymceGallery
     },
@@ -183,6 +182,8 @@
         imageUrl1: '',
         imageUrl2: '',
         imageUrl3: '',
+        // 是否关闭编辑
+        info: 0,
         // 表单数据
         formData: {
           // 巡检单编号
@@ -236,6 +237,7 @@
     created() {
       // 接收用户参数 & 页面初始化
       this.formData.checkAppCode = params(this, 'checkAppCode')
+      this.info = params(this, 'info') * 1
       this.init()
     },
     methods: {

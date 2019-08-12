@@ -1,5 +1,6 @@
 <template>
   <div class="checkApp-container" v-loading="loading">
+    <!-- 巡检内容区 -->
     <x-header :left-options="{showBack: false}" :title="$t('maintenance.checkApp')"></x-header>
     <div class="checkApp-body">
       <group label-width="5em" label-margin-right="2em" label-align="left">
@@ -28,28 +29,29 @@
         <x-textarea title="解决方案" v-model="formData.checkAppSolution" name="checkAppSolution" :max="100"></x-textarea>
         <x-textarea title="备注" v-model="formData.checkAppRemark" name="checkAppRemark" :max="100"></x-textarea>
         <x-button @click.native="handlerSubmit" type="primary" :disabled="disable">提交巡检结果</x-button>
+        <x-button @click.native="imageHandler" type="primary" :disabled="disable" v-if="false">保存截图</x-button>
       </group>
     </div>
   </div>
 </template>
 
 <script>
-  import { XHeader, XInput, Group, XButton, Cell, PopupPicker, Datetime, XTextarea, AlertModule } from 'vux'
-  import { insert } from '@/api/maintenance/checkApp'
+  import { XHeader, XInput, Group, XButton, Cell, PopupPicker, Datetime, XTextarea, AlertModule, XDialog } from 'vux'
   import { selectUserListByOrgName } from '@/api/user'
-  import { isNotEmpty, getTodayTime } from '@/utils'
+  import { insert, isNotEmpty, getTodayTime } from '@/utils'
   import Uploaders from 'vux-uploads'
 
   export default {
     name: 'checkApp',
     components: {
-      XHeader, XInput, Group, XButton, Cell, PopupPicker, Datetime, XTextarea, AlertModule,
+      XHeader, XInput, Group, XButton, Cell, PopupPicker, Datetime, XTextarea, AlertModule, XDialog,
       Uploaders
     },
     data() {
       return {
-        loading: false,
+        loading: true,
         disable: false,
+        isDialogShow: false,
         title: '上传巡检截图（最多3张）',
         result: ['正常'],
         optionsResult: [['正常', '异常']],
@@ -61,6 +63,9 @@
           checkAppId: null,
           // 巡检编号
           checkAppCode: null,
+          checkAppEvidence1: null,
+          checkAppEvidence2: null,
+          checkAppEvidence3: null,
           // 巡检结果
           checkAppResult: 1,
           // 巡检人
@@ -72,14 +77,20 @@
           // 备注
           checkAppRemark: ''
         },
+        checkAppInsert: '/maintenance/checkApp/insert',
         images: [],
-        uploadUrl: process.env.BASE_API + process.env.ZUUL + process.env.PREFIX + '/general/upload/uploadImgToNginx',
-        // alert content
-        content: ''
+        uploadUrl: process.env.BASE_API + process.env.ZUUL + process.env.PREFIX + '/general/upload/uploadImgToNginx'
       }
     },
     created() {
       this.init()
+    },
+    watch: {
+      images(images) {
+        if (isNotEmpty(images[0])) this.formData.checkAppEvidence1 = images[0].id
+        if (isNotEmpty(images[1])) this.formData.checkAppEvidence2 = images[1].id
+        if (isNotEmpty(images[2])) this.formData.checkAppEvidence3 = images[2].id
+      }
     },
     methods: {
       init() {
@@ -90,21 +101,19 @@
               userArray[i] = { name: result.data[i].userNickName, value: result.data[i].userName }
             }
             this.optionsUser = [userArray]
+          }).finally(() => {
+            this.loading = false
           })
       },
       handlerSubmit() {
-        if (this.images != null && this.images.length === 1 && isNotEmpty(this.images[0].id)) {
-          this.formData.checkAppAvatar = this.images[0].id
-        }
         this.formData.checkAppResult = this.result[0] === '正常' ? 1 : 0
         // 新增
         this.disable = true
-        insert(this.formData)
+        insert(this.checkAppInsert, this.formData)
           .then(result => {
+            const checkApp = result.data.checkApp
             if (result.data.status.toString().indexOf('2000') === 0) {
-              AlertModule.show({
-                content: '巡检单保存成功'
-              })
+              this.imageHandler(checkApp.checkAppCode)
             } else {
               AlertModule.show({
                 content: result.data.message
@@ -120,6 +129,11 @@
             this.disable = false
           })
       },
+      imageHandler(checkAppCode) {
+        this.$router.push({
+          path: `/checkAppPicture/${checkAppCode}`
+        })
+      },
       optionsUserChangeHandler(value) {
         const name = this.$refs.checkUserPicker.getNameValues(value)
         if (name !== '') {
@@ -128,7 +142,6 @@
         }
       },
       onSuccessHandler() {
-        this.loading = true
       }
     }
   }
@@ -146,6 +159,10 @@
       margin-right: 10px;
       margin-bottom: 10px;
       width: 96%;
+    }
+    .screen-shot {
+      margin-top: 20%;
+      img {width: 300px; height: 150px}
     }
   }
 </style>

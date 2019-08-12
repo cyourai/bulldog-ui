@@ -15,7 +15,7 @@ function hasPermission(roles, permissionRoles) {
 }
 
 // whitelist
-const whiteList = ['/login', '/authredirect', '/register', '/resetPassword', '/human', '/maintenance']
+const whiteList = ['/login', '/authredirect', '/register', '/resetPassword', '/human', '/maintenance', '/checkApp']
 
 router.beforeEach((to, from, next) => {
   NProgress.start() // start progress bar
@@ -62,7 +62,6 @@ router.beforeEach((to, from, next) => {
         } else {
           next({ path: '/401', replace: true, query: { noGoBack: true }})
         }
-        // 可删 ↑
       }
     }
   } else {

@@ -93,6 +93,7 @@ export default {
     checkApp: '应用巡检',
     checkAppList: '应用巡检列表',
     checkAppEdit: '应用巡检单编辑',
+    checkPicture: '巡检截图',
     orderSchedule: '生成排期单',
     organization: '应急分组',
     outbox: '发件箱',
