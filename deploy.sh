@@ -19,10 +19,14 @@ echo "------------------------step3: 选择推送服务器----------------------
 deploy() {
     echo 代码推送中... $1
     current=`date "+%Y%m%d_%H%M%S"`
-    ssh root@$1 mv /workspaces/html/bulldog-ui /workspaces/html/bulldog-ui_$current
-    echo 清空原有发布项目...
-    ssh root@$1 mkdir -p /workspaces/html/bulldog-ui/dist
-    ssh root@39.97.177.32 mkdir -p /workspaces/html/bulldog-ui/dist
+    ssh root@$1 cp -r /workspaces/html/bulldog-ui /workspaces/html/bulldog-ui_$current
+    echo 清空原有发布项目...除images
+    ssh root@$1 rm -rf /workspaces/html/bulldog-ui/dist/static/css
+    ssh root@$1 rm -rf /workspaces/html/bulldog-ui/dist/static/fonts
+    ssh root@$1 rm -rf /workspaces/html/bulldog-ui/dist/static/img
+    ssh root@$1 rm -rf /workspaces/html/bulldog-ui/dist/static/js
+    ssh root@$1 rm -rf /workspaces/html/bulldog-ui/dist/static/langs
+    ssh root@$1 rm -rf /workspaces/html/bulldog-ui/dist/static/skins
     echo 代码推送bulldog-ui...
     scp -r ./dist root@$1:/workspaces/html/bulldog-ui
     ssh root@$1 nginx -s reopen
