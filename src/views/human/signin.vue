@@ -25,7 +25,7 @@
                  is-type="china-mobile" text-align="left"></x-input>
         <x-input required title="邮箱" v-model="formData.humanEmail" name="humanEmail" placeholder="请输入邮箱地址" is-type="email"
                  text-align="left"></x-input>
-        <datetime required v-model="formData.humanBirthday" title="生日"></datetime>
+        <datetime :min-year="minYear" required v-model="formData.humanBirthday" title="生日"></datetime>
         <x-input required title="户口所在地" v-model="formData.humanResidence" name="humanResidence"
                  placeholder="请输入您户口所在地" text-align="left"></x-input>
         <x-input required title="毕业学校" v-model="formData.humanSchool" name="humanSchool"
@@ -59,6 +59,7 @@ export default {
   data() {
     return {
       disable: false,
+      minYear: 1949,
       // 表单数据
       formData: {
         // 序号

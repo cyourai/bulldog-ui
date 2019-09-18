@@ -72,7 +72,7 @@
                       </div>
                       <div class="screen-qrcode" style="">
                         <div class="screen-qrcode-inline" style="">
-                          <vue-qr :text="downloadData.url" :margin="0" colorDark="#f67b29" colorLight="#fff" :logoSrc="downloadData.icon + '?cache'" :logoScale="0.3" :size="200"></vue-qr>
+                          <vue-qr :text="qrcodeData.url" :margin="0" colorDark="#f67b29" colorLight="#fff" :logoSrc="qrcodeData.icon + '?cache'" :logoScale="0.3" :size="200"></vue-qr>
                           <br><span>长按二维码查看详细巡检报告</span>
                         </div>
                       </div>
@@ -330,9 +330,9 @@
         checkAppUserNickName: '',
         checkAppUserAvatar: '',
         checkAppUserMobile: '',
-        downloadData: {
+        qrcodeData: {
           url:
-            `${document.location.protocol}://${window.location.host}:${document.location.port}/#/checkAppEdit/${this.checkAppCode}`,
+            `${document.location.protocol}//${window.location.host}:${document.location.port}/#/checkAppEdit/${this.checkAppCode}`,
           icon: `/static/images/ppp/bulldog.png`
         },
         // 表单数据

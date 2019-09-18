@@ -15,7 +15,7 @@ function hasPermission(roles, permissionRoles) {
 }
 
 // whitelist
-const whiteList = ['/login', '/authredirect', '/register', '/resetPassword', '/human', '/maintenance', '/checkApp']
+const whiteList = ['/login', '/authredirect', '/register', '/resetPassword', '/human', '/maintenance/checkApp/insert', '/checkApp']
 
 router.beforeEach((to, from, next) => {
   NProgress.start() // start progress bar

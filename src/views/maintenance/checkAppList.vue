@@ -106,6 +106,19 @@
               </table-grid>
             </div>
           </div>
+          <!--弹出巡检二维码-->
+          <el-dialog
+            title="巡检二维码"
+            :visible.sync="dialogVisible"
+            width="60%">
+            <div style="text-align: center">
+              <vue-qr :text="qrcodeData.url" :margin="30" colorDark="#000000" colorLight="#fff"
+                      :logoSrc="qrcodeData.icon" :logoScale="0.2" :size="450"></vue-qr>
+            </div>
+            <span slot="footer" class="dialog-footer">
+              <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+            </span>
+          </el-dialog>
         </div>
       </div>
     </div>
@@ -119,7 +132,8 @@
   import ComponentSelect from '@/components/ComponentSelect'
   import { TableGrid, PicMagnify } from 'cyourai-vue-dialog'
   import { deleteByCode } from '@/api/human'
-  import { createQrcode, clearParam } from '@/utils'
+  import { clearParam } from '@/utils'
+  import vueQr from 'vue-qr'
 
   export default {
     name: 'checkAppList',
@@ -127,12 +141,13 @@
       ComponentFilter,
       ComponentSelect,
       TableGrid,
-      createQrcode,
-      PicMagnify
+      PicMagnify,
+      vueQr
     },
     data() {
       return {
         isShowIndex: false,
+        dialogVisible: false,
         // 分页查询所有事件列表
         selectUrl: '/maintenance/checkApp/page',
         // 默认排序
@@ -147,6 +162,10 @@
           columns: [],
           // 数据
           list: []
+        },
+        qrcodeData: {
+          url: `${document.location.protocol}//${window.location.host}/#/checkApp`,
+          icon: `/static/images/ppp/ppp_logo.png`
         },
         // 筛选
         filterFormData: {
@@ -190,13 +209,7 @@
         })
       },
       createQrcodeHandler() {
-        createQrcode({
-          url: `${document.location.protocol}://{0}/#/checkApp`
-        }).then(result => {
-          this.$alert('<img style="width: 100%;" src=' + result.data + '>', '应用巡检二维码', {
-            dangerouslyUseHTMLString: true
-          })
-        })
+        this.dialogVisible = true
       },
       del(row) {
         // 删除

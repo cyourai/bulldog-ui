@@ -5,10 +5,10 @@ module.exports = {
   PREFIX: '"/api"',
   ZUUL: '"/zuul"',
 
-  HOST: '"39.97.177.32"',
+  HOST: '"ldp.e-sscard.com"',
   PIC_UPLOAD: '"zuul"',
   // 本地开发
-  BASE_API: '"http://39.97.177.32:8888"'
+  BASE_API: '"http://ldp.e-sscard.com:8888"'
 
   // // 阿里开发服务器
   // HOST: '"39.104.87.198"',

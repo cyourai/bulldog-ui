@@ -7,8 +7,8 @@ module.exports = {
   HOST: '"localhost"',
   PIC_UPLOAD: '"zuul"',
   // 本地开发
-  BASE_API: '"http://172.10.17.85:8888"'
-  // BASE_API: '"http://localhost:8888"'
+  // BASE_API: '"http://172.10.17.85:8888"'
+  BASE_API: '"http://localhost:8888"'
   // 阿里开发服务器
   // BASE_API: '"http://39.97.177.32:8888"'
   // BASE_API: '"http://39.104.114.151:8888"'
